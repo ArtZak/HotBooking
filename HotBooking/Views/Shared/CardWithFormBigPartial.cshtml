@@ -1,0 +1,45 @@
+﻿@using HotBooking.Domain
+@using HotBooking.Domain.Entities
+@model City
+
+<div class="article__card card card_big" style="background-image: url(@Model?.TitleImagePath);">
+    <form action="" class="card__form">
+        <div class="form__row">
+            <div class="form__item-column">
+                <label for="arrival_date_london">Arrival date</label>
+                <input type="date" id="arrival_date_london">
+            </div>
+
+            <div class="form__item-column">
+                <label for="departure_date_paris">Date of departure</label>
+                <input type="date" id="departure_date_paris">
+            </div>
+
+            <div class="form__item-column">
+                <label for="number_of_children_paris">Children</label>
+                <input type="number" id="number_of_children_paris" class="number" min="0" max="6">
+            </div>
+
+            <div class="form__item-column">
+                <label for="number_of_adults_paris">Adults</label>
+                <input type="number" id="number_of_adults_paris" class="number" value="1" min="1" max="9">
+            </div>
+
+            <div class="form__item-column">
+                <label for="number_of_rooms_paris">Rooms</label>
+                <input type="number" id="number_of_rooms_paris" class="number" value="1" min="1" max="9">
+            </div>
+            <button type="submit">Check prices</button>
+        </div>
+    </form>
+
+    <div class="card__row card card_big" style="background-image: url(@Model?.TitleImagePath);">
+        <div class="card__name">
+            <p>@Model?.Title</p>
+            <p>@Model?.Hotels?.Count hotels</p>
+        </div>
+        <div class="card__price">
+            from 39.95$
+        </div>
+    </div>
+</div>
