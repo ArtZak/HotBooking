@@ -1,9 +1,6 @@
-﻿@using HotBooking.Domain;
-@using HotBooking.Domain.Repositories.Abstract;
-@using System.Reflection;
-@model City
-@{ 
-    ViewBag.TableName = "City";
+﻿@model Hotel
+@{
+    ViewBag.TableName = "Hotel";
 }
 
 <!DOCTYPE html>
@@ -13,7 +10,7 @@
     <main class="container">
         <a asp-area="Admin" asp-controller="Home" asp-action="Read" class="btn btn-success">Back</a>
         <hr />
-        <form asp-area="Admin" asp-controller="Cities" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <form asp-area="Admin" asp-controller="Hotels" asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="All"></div>
             <div class="mb-3">
                 <label for="table_name" class="form-label">Table</label>
@@ -45,22 +42,37 @@
                 <span asp-validation-for="Text"></span>
             </div>
             <div class="mb-3">
+                <label asp-for="Stars" class="form-label"></label>
+                <input type="number" max="5" min="1" asp-for="Stars" class="form-control" />
+                <span asp-validation-for="Stars"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DistanceToCenter" class="form-label"></label>
+                <input type="number" asp-for="DistanceToCenter" class="form-control" />
+                <span asp-validation-for="DistanceToCenter"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Food" class="form-label"></label>
+                <input type="text" asp-for="Food" class="form-control" />
+                <span asp-validation-for="Food"></span>
+            </div>
+            <div class="mb-3">
                 <label asp-for="IsFavorite" class="form-label"></label>
                 <input asp-for="IsFavorite" class="form-check-input" />
                 <span asp-validation-for="IsFavorite"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="TitleImagePath" class="form-label"></label>
-                <input type="file" name="titleImageFile" class="form-control" accept="image/*"/>
-                <input type="text" name="defaultImagePath" hidden value="@Model.TitleImagePath"/>
+                <input type="file" name="titleImageFile" class="form-control" accept="image/*" />
+                <input type="text" name="defaultImagePath" hidden value="@Model.TitleImagePath" />
                 <div>
                     <img src="~/@Model.TitleImagePath" alt="" />
                 </div>
             </div>
             <div class="mb-3">
-                <label asp-for="CountryId" class="form-label"></label>
-                <input asp-for="CountryId" class="form-control" />
-                <span asp-validation-for="CountryId"></span>
+                <label asp-for="CityId" class="form-label"></label>
+                <input asp-for="CityId" class="form-control" />
+                <span asp-validation-for="CityId"></span>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

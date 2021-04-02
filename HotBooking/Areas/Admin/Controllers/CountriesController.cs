@@ -12,35 +12,32 @@ using System.Threading.Tasks;
 namespace HotBooking.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class CitiesController : Controller
+    public class CountriesController : Controller
     {
         private readonly DataManager dataManager;
-        private readonly IWebHostEnvironment hostingEnvironment;
-        public CitiesController(DataManager dataManager, IWebHostEnvironment hostingEnvironment)
+        private readonly IWebHostEnvironment hostEnvironment;
+
+        public CountriesController(DataManager dataManager, IWebHostEnvironment environment)
         {
             this.dataManager = dataManager;
-            this.hostingEnvironment = hostingEnvironment;
+            hostEnvironment = environment;
         }
 
-        
-        // GET: CitiesController/Edit/5
         public IActionResult Edit(Guid id)
         {
-            var entity = id == default ? new City() : dataManager.Cities.GetById(id);
+            var entity = id == default ? new Country() : dataManager.Countries.GetById(id);
             return View(entity);
         }
 
-        // POST: CitiesController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(City model, IFormFile titleImageFile, string defaultImagePath)
+        public IActionResult Edit(Country model, FormFile titleImageFile, string defaultImagePath)
         {
             if (ModelState.IsValid)
             {
                 if (titleImageFile != null)
                 {
-                    model.TitleImagePath = "images/favoriteCities/" + titleImageFile.FileName;
-                    using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, model.TitleImagePath), FileMode.Create))
+                    model.TitleImagePath = "images/countries" + titleImageFile.FileName;
+                    using (var stream = new FileStream(Path.Combine(hostEnvironment.WebRootPath, model.TitleImagePath), FileMode.Create))
                     {
                         titleImageFile.CopyTo(stream);
                     }
@@ -49,19 +46,16 @@ namespace HotBooking.Areas.Admin.Controllers
                 {
                     model.TitleImagePath = defaultImagePath;
                 }
-                dataManager.Cities.Save(model);
+                dataManager.Countries.Save(model);
                 return RedirectToAction("Read", "Home");
             }
             return View(model);
         }
 
-
-        // POST: CitiesController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
-            dataManager.Cities.Delete(id);
+            dataManager.Countries.Delete(id);
             return RedirectToAction("Read", "Home");
         }
     }

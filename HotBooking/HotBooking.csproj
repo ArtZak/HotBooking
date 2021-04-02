@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <Folder Include="Models\ViewComponents\" />
+    <Folder Include="wwwroot\images\hotels\" />
+    <Folder Include="wwwroot\images\hotelFacilities\" />
+    <Folder Include="wwwroot\images\roomFacilities\" />
+    <Folder Include="wwwroot\images\rooms\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,8 @@
-﻿@using HotBooking.Domain;
-@using HotBooking.Domain.Repositories.Abstract;
-@using System.Reflection;
-@model City
-@{ 
-    ViewBag.TableName = "City";
+﻿@model Country
+@{
+    ViewBag.TableName = "Country";
 }
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +11,7 @@
     <main class="container">
         <a asp-area="Admin" asp-controller="Home" asp-action="Read" class="btn btn-success">Back</a>
         <hr />
-        <form asp-area="Admin" asp-controller="Cities" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <form asp-area="Admin" asp-controller="Countries" asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="All"></div>
             <div class="mb-3">
                 <label for="table_name" class="form-label">Table</label>
@@ -51,17 +49,12 @@
             </div>
             <div class="mb-3">
                 <label asp-for="TitleImagePath" class="form-label"></label>
-                <input type="file" name="titleImageFile" class="form-control" accept="image/*"/>
-                <input type="text" name="defaultImagePath" hidden value="@Model.TitleImagePath"/>
+                <input type="file" name="titleImageFile" class="form-control" accept="image/*" />
+                <input type="text" name="defaultImagePath" hidden value="@Model.TitleImagePath" />
                 <div>
                     <img src="~/@Model.TitleImagePath" alt="" />
                 </div>
-            </div>
-            <div class="mb-3">
-                <label asp-for="CountryId" class="form-label"></label>
-                <input asp-for="CountryId" class="form-control" />
-                <span asp-validation-for="CountryId"></span>
-            </div>
+            </div>           
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
