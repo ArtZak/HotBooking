@@ -41,6 +41,27 @@ namespace HotBooking.Domain.Repositories.EntityFramwork
             context.SaveChanges();
         }
 
+        public List<String> GetDataNames()
+        {
+            var list = new List<String>() { "Title", "Subtitle", "Text", "Is Favorite", "Title image path", "Date added", "Country Id" };
+            return list;
+        }
+
+        public List<String> GetData(City entity)
+        {
+            var list = new List<String>();
+
+            list.Add(entity.Title.ToString());
+            list.Add(entity.Subtitle.ToString());
+            list.Add(entity.Text.ToString());
+            list.Add(entity.IsFavorite.ToString());
+            list.Add(entity.TitleImagePath?.ToString());
+            list.Add(entity.DateAdded.ToString());
+            list.Add(entity.CountryId.ToString());
+
+            return list;
+        }
+
         public Type GetEntityType()
         {
             return typeof(City);

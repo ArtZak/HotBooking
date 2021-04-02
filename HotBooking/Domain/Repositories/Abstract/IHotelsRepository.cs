@@ -12,6 +12,8 @@ namespace HotBooking.Domain.Repositories.Abstract
         Hotel GetById(Guid id);
         void Save(Hotel entity);
         void Delete(Guid id);
+        List<String> GetDataNames();
+        List<String> GetData(Hotel entity);
         Type GetEntityType();
     }
 }

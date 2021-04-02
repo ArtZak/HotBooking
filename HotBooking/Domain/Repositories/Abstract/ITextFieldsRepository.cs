@@ -12,6 +12,8 @@ namespace HotBooking.Domain.Repositories.Abstract
         TextField GetById(Guid id);
         void Save(TextField entity);
         void Delete(Guid id);
+        List<String> GetDataNames();
+        List<String> GetData(TextField entity);
         Type GetEntityType();
         TextField GetTextFieldByCodeWord(string codeWord);
     }

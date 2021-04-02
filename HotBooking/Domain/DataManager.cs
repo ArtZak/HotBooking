@@ -3,6 +3,7 @@ using HotBooking.Domain.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace HotBooking.Domain
@@ -39,6 +40,51 @@ namespace HotBooking.Domain
             Rooms = roomsRepository;
             RoomFacilities = roomFacilitiesRepository;
 
+        }
+
+        public void GetSelectedTable(PropertyInfo table, out dynamic selectedTable)
+        {
+            if (table.PropertyType == typeof(ICitiesRepository))
+            {
+                selectedTable = (ICitiesRepository)table.GetValue(this);
+                return;
+            }
+            else if (table.PropertyType == typeof(ICountriesRepository))
+            {
+                selectedTable = (ICountriesRepository)table.GetValue(this);
+                return;
+            }
+            else if (table.PropertyType == typeof(IHotelFacilitiesRepository))
+            {
+                selectedTable = (IHotelFacilitiesRepository)table.GetValue(this);
+                return;
+            }
+            else if (table.PropertyType == typeof(IHotelsRepository))
+            {
+                selectedTable = (IHotelsRepository)table.GetValue(this);
+                return;
+            }
+            else if (table.PropertyType == typeof(IInspirationItemsRepository))
+            {
+                selectedTable = (IInspirationItemsRepository)table.GetValue(this);
+                return;
+            }
+            else if (table.PropertyType == typeof(IReviewsRepository))
+            {
+                selectedTable = (IReviewsRepository)table.GetValue(this);
+                return;
+            }
+            else if (table.PropertyType == typeof(IRoomFacilitiesRepository))
+            {
+                selectedTable = (IRoomFacilitiesRepository)table.GetValue(this);
+                return;
+            }
+            else if (table.PropertyType == typeof(IRoomsRepository))
+            {
+                selectedTable = (IRoomsRepository)table.GetValue(this);
+                return;
+            }
+            selectedTable = (ICountriesRepository)table.GetValue(this);
         }
     }
 }

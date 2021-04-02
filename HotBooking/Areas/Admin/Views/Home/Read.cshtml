@@ -110,7 +110,21 @@
 @model DataManager
 @{
     PropertyInfo[] repos = Model.GetType().GetProperties();
-    var cityRepo = (ICitiesRepository)repos[2].GetValue(Model);    
+    int selectedIndex = -1;
+    dynamic selectedTable = (ICountriesRepository)repos[3].GetValue(Model);
+
+    for (int i = 0; i < repos.Length; i++)
+    {
+        if (repos[i].Name == ViewBag.SelectedTable)
+        {
+            selectedIndex = i;
+        }
+    }
+
+    if (selectedIndex != -1)
+    {
+        Model.GetSelectedTable(repos[selectedIndex], out selectedTable);
+    }
 }
 
 
@@ -120,17 +134,23 @@
     <br>
     <main class="container">
         <div class="row">
-            <div class="col-3">
-                <a href="create.php?table=<?= $selected_table ?>" class="btn btn-success">Create</a>
+                <div class="col-3">
+                    <a asp-area="Admin" asp-controller="@ViewBag.SelectedTable" asp-action="Edit" class="btn btn-success">Create</a>
 
-            </div>
+                </div>
+            
             <div class="col"></div>
             <div class="col-md-4 col-8 right">
-                <form asp-area="Admin" asp-controller="Home" asp-action="Read" method="GET">
+                <form asp-area="Admin" asp-controller="Home" asp-action="Read" method="post">
                     <div class="row">
                         <select name='table' class="col form-select" aria-label="table">
+                            <option value="@ViewBag.SelectedTable">@ViewBag.SelectedTable</option>
                             @foreach (var repo in repos)
                             {
+                                @if (repo.Name == ViewBag.SelectedTable)
+                                {
+                                    continue;
+                                }
                                 <option value="@repo.Name">@repo.Name</option>
                             }
 
@@ -142,42 +162,47 @@
 
         </div>
         <hr />
-        <table id="data" class="table">
-            <thead>
-                <tr>                  
-                    @foreach(var item in cityRepo.GetEntityType().GetProperties())
-                    {
-                        <th>@item.Name</th>
-                    }
+        @if (selectedIndex > -1)
+        {
+            <table id="data" class="table">
+                <thead>
+                    <tr>
+                        @foreach (var item in selectedTable.GetDataNames())
+                        {
+                            <th>@item</th>
+                        }
 
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($data as $row) : ?>
-                <tr>
-                    <?php foreach ($row as $cell) : ?>
-                    <td><?= $cell ?></td>
-                    <?php endforeach; ?>
-                    <td class="action">
-                        <form action="edit.php" method="GET">
-                            <input name="table" type="hidden" value="<?= $selected_table ?>">
-                            <input name="id" type="hidden" value="<?= $row[0] ?>">
-                            <button type="submit" href="" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button>
-                        </form>
-                        <form action="delete.php" method="POST">
-                            <input name="table" type="hidden" value="<?= $selected_table ?>">
-                            <input name="id" type="hidden" value="<?= $row[0] ?>">
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </form>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <?php else : ?>
-        <h5>No data available.</h5>
-        <?php endif ?>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var table in selectedTable.GetAll())
+                    {
+                        <tr>
+                            @foreach (var data in selectedTable.GetData(table))
+                            {
+                                <td>@data</td>
+                            }
+
+                            <td class="action">
+                                <form asp-area="Admin" asp-controller="@ViewBag.SelectedTable" asp-action="Edit" method="GET">
+                                    <input name="id" type="hidden" value="@table.Id">
+                                    <button type="submit" href="" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></button>
+                                </form>
+                                <form asp-area="Admin" asp-controller="@ViewBag.SelectedTable" asp-action="Delete" method="POST">
+                                    <input name="id" type="hidden" value="@table.Id">
+                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h5>No data available.</h5>
+        }
     </main>
 </body>
 

@@ -12,6 +12,8 @@ namespace HotBooking.Domain.Repositories.Abstract
         Country GetById(Guid id);
         void Save(Country entity);
         void Delete(Guid id);
+        List<String> GetDataNames();
+        List<String> GetData(Country entity);
         Type GetEntityType();
     }
 }
