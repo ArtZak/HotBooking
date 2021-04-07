@@ -20,6 +20,37 @@ namespace HotBooking.Controllers
             signInManager = signinMgr;
         }
 
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityUser user = new IdentityUser { Email = model.Email, UserName = model.Email};
+                // добавляем пользователя
+                var result = await userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    // установка куки
+                    await signInManager.SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            return View(model);
+        }
+
         [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
@@ -45,6 +76,19 @@ namespace HotBooking.Controllers
                 ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неверный логин или пароль");
             }
             return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied(string returnUrl = null)
+        {
+            // workaround
+            if (Request.Cookies["Identity.External"] != null)
+            {
+                return Redirect(returnUrl ?? "/");
+            }
+            return RedirectToAction(nameof(Login));
+
         }
 
         [Authorize]

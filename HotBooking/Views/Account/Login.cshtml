@@ -1,29 +1,36 @@
 ﻿@model LoginViewModel
+@{ 
+    Layout = "_LayoutWithoutPoster";
+}
 
-<div>
-    <h1>Вход в личный кабинет</h1>
-    <div class="div-box">
-        <form class="login-form" asp-area="" asp-controller="Account" asp-action="Login" method="post" asp-route-returnUrl="@ViewBag.returnUrl">
-            <div asp-validation-summary="All"></div>
-            <div>
-                <label asp-for="UserName"></label>
-                <input asp-for="UserName" />
-                <span asp-validation-for="UserName"></span>
+<div class="wrapper">
+    <div class="content">
+        <div class="container container_reg">
+            <div class="content__column">
+
+                <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewBag.returnUrl" class="login-form">
+                    <div class="register-form__title">
+                        <p class="title_2">Sign in</p>
+                        <p class="">You can sign in using your HotBooking account to access our services.</p>
+                    </div>
+                    <input asp-for="UserName" placeholder="Email">
+                    <span asp-validation-for="UserName"></span>
+                    <input asp-for="Password" type="password" name="password" placeholder="Password">
+                    <span asp-validation-for="Password"></span>
+                    <label asp-for="RememberMe"></label>
+                    <input asp-for="RememberMe" type="checkbox"/>                   
+                    <p class="register-form__agreement">By proceeding, I acknowledge that I have read and agree to HotBooking's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a>.</p>
+                    <input type="submit" value="Sign In" class="register-form__button">
+                </form>
+                <p class="register-form__title_2">Or use one of these options</p>
+                <div class="register-form__another_options">
+                    <a href=""><img src="../images/icons/facebook.png" alt=""></a>
+                    <a href=""><img src="../images/icons/google.png" alt=""></a>
+                    <a href=""><img src="../images/icons/apple.png" alt=""></a>
+                </div>
+                <p class="register-form__title_2">Not a HotBooking member?  <a asp-controller="Account" asp-action="Register">Register now</a></p>
             </div>
-            <div>
-                <label asp-for="Password"></label>
-                <input asp-for="Password" />
-                <span asp-validation-for="Password"></span>
-            </div>
-            <div>
-                <label asp-for="RememberMe"></label>
-                <input asp-for="RememberMe" />
-                <span asp-validation-for="RememberMe"></span>
-            </div>
-            <div>
-                <input type="submit" value="Войти" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 

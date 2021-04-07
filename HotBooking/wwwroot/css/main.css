@@ -292,7 +292,7 @@ button {
 /* Content */
 
 .content {
-    flex: 1 1 auto;
+    flex: 2 1 auto;
 }
 
 .content__column {
