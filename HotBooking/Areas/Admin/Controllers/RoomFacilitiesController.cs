@@ -30,7 +30,7 @@ namespace HotBooking.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(RoomFacility model, FormFile titleImageFile, string defaultImagePath)
+        public IActionResult Edit(RoomFacility model, IFormFile titleImageFile, string defaultImagePath)
         {
             if (ModelState.IsValid)
             {

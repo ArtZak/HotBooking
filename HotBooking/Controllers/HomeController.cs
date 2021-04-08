@@ -55,7 +55,8 @@ namespace HotBooking.Controllers
                 }
                 else
                 {
-                    hotels = selectedCity.FirstOrDefault().Hotels;
+                    var city = selectedCity.FirstOrDefault();
+                    hotels = city.Hotels;
                 }
             }
 
