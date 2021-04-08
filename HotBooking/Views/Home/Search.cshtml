@@ -1,0 +1,207 @@
+﻿@using HotBooking.Domain.Entities
+
+@model List<Hotel>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="container">
+                <div class="content__row">
+                    <aside>
+                        <form action="" class="poster__form aside__form">
+                            <div class="form__row">
+                                <div class="form__item-column">
+                                    <label for="hotels_name">Input hotels name or city</label>
+                                    <input type="text" id="hotels_name" placeholder="Hotels name or city">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="arrival_date_london">Arrival date</label>
+                                    <input type="date" id="arrival_date_london">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="departure_date_paris">Date of departure</label>
+                                    <input type="date" id="departure_date_paris">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="number_of_adults_paris">Adults</label>
+                                    <input type="number" id="number_of_adults_paris" class="number" value="1" min="1" max="9">
+                                </div>
+
+                                <div class="row">
+                                    <div class="form__item-column">
+                                        <label for="number_of_children_paris">Children</label>
+                                        <input type="number" id="number_of_children_paris" class="number" min="0" max="6">
+                                    </div>
+
+                                    <div class="form__item-column">
+                                        <label for="number_of_rooms_paris">Rooms</label>
+                                        <input type="number" id="number_of_rooms_paris" class="number" value="1" min="1" max="9">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="submit">Check prices</button>
+                            </div>
+                        </form>
+
+                        <div class="aside__filter-by">
+                            <div class="filter-by__title">
+                                Filter by:
+                            </div>
+                            <hr>
+                            <div class="filter-by__item">
+                                <div class="filter-by__title2">
+                                    Your budget (per night)
+                                </div>
+                                <div class="filter-by__options">
+                                    <div class="options__row">
+                                        <div class="options__row_inner">
+                                            <input type="checkbox">
+                                            <div class="options__desc">
+                                                AMD 31,600 - AMD 63,200
+                                            </div>
+                                        </div>
+                                        <div class="options__count">435</div>
+                                    </div>
+                                    <div class="options__row">
+                                        <div class="options__row_inner">
+                                            <input type="checkbox">
+                                            <div class="options__desc">
+                                                AMD 31,600 - AMD 63,200
+                                            </div>
+                                        </div>
+                                        <div class="options__count">435</div>
+                                    </div>
+                                    <div class="options__row">
+                                        <div class="options__row_inner">
+                                            <input type="checkbox">
+                                            <div class="options__desc">
+                                                AMD 31,600 - AMD 63,200
+                                            </div>
+                                        </div>
+                                        <div class="options__count">435</div>
+                                    </div>
+                                    <div class="options__row">
+                                        <div class="options__row_inner">
+                                            <input type="checkbox">
+                                            <div class="options__desc">
+                                                AMD 31,600 - AMD 63,200
+                                            </div>
+                                        </div>
+                                        <div class="options__count">435</div>
+                                    </div>
+                                    <div class="options__row">
+                                        <div class="options__row_inner">
+                                            <input type="checkbox">
+                                            <div class="options__desc">
+                                                AMD 31,600 - AMD 63,200
+                                            </div>
+                                        </div>
+                                        <div class="options__count">435</div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="filter-by__item">
+                                    <div class="filter-by__title2">
+                                        Your budget (per night)
+                                    </div>
+                                    <div class="filter-by__options">
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox">
+                                                <div class="options__desc">
+                                                    AMD 31,600 - AMD 63,200
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox">
+                                                <div class="options__desc">
+                                                    AMD 31,600 - AMD 63,200
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox">
+                                                <div class="options__desc">
+                                                    AMD 31,600 - AMD 63,200
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox">
+                                                <div class="options__desc">
+                                                    AMD 31,600 - AMD 63,200
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox">
+                                                <div class="options__desc">
+                                                    AMD 31,600 - AMD 63,200
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </aside>
+                    <main>
+                        @foreach(var hotel in Model)
+                        {
+                            <article>
+                                <div class="article__title">
+                                    <h2>@ViewBag.CityName: @Model.Count properties found</h2>
+                                </div>
+                                <div class="search__card">
+                                    <div class="card__row">
+                                        <div class="card__image">
+                                            <img src="@hotel.TitleImagePath" alt="">
+                                        </div>
+                                        <div class="card__desc">
+                                            <div class="card__title">
+                                                @hotel.Title
+                                            </div>
+                                            <div class="card__subtitle">
+                                                <p>5th arr., @ViewBag.CityName  @hotel.DistanceToCenter from centre  Metro access</p>
+                                                <p>5 other people looked for your dates in the last 10 minutes</p>
+                                            </div>
+                                        </div>
+                                        <div class="card__info">
+                                            <div class="review">
+                                                <div class="review__text">
+                                                    <p>Very good</p>
+                                                    <p>1105 reviews</p>
+                                                </div>
+                                                <div class="review__digit">
+                                                    @hotel.ReviewRating
+                                                </div>
+                                            </div>
+                                            <div class="price">
+                                                AMD 34940
+                                            </div>
+                                            <button class="submit">
+                                                See availability
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        }          
+                    </main>
+                </div>
+            </div>
+        </div>       
+    </div>
+</body>
