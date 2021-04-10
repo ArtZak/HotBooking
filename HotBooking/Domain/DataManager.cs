@@ -19,6 +19,7 @@ namespace HotBooking.Domain
         public IReviewsRepository Reviews { get; set; }
         public IRoomsRepository Rooms { get; set; }
         public IRoomFacilitiesRepository RoomFacilities { get; set; }
+        public IHotelHotelFacilityRepository HotelHotelFacilities { get; set; }
 
         public DataManager(ITextFieldsRepository textFieldsRepository, 
                             IInspirationItemsRepository inspirationItemsRepository,
@@ -28,7 +29,8 @@ namespace HotBooking.Domain
                             IHotelFacilitiesRepository hotelFacilitiesRepository,
                             IReviewsRepository reviewsRepository,
                             IRoomsRepository roomsRepository,
-                            IRoomFacilitiesRepository roomFacilitiesRepository)
+                            IRoomFacilitiesRepository roomFacilitiesRepository,
+                            IHotelHotelFacilityRepository hotelHotelFacilityRepository)
         {
             TextFields = textFieldsRepository;
             InspirationItems = inspirationItemsRepository;
@@ -39,7 +41,7 @@ namespace HotBooking.Domain
             Reviews = reviewsRepository;
             Rooms = roomsRepository;
             RoomFacilities = roomFacilitiesRepository;
-
+            HotelHotelFacilities = hotelHotelFacilityRepository;
         }
 
         public void GetSelectedTable(PropertyInfo table, out dynamic selectedTable)
@@ -82,6 +84,11 @@ namespace HotBooking.Domain
             else if (table.PropertyType == typeof(IRoomsRepository))
             {
                 selectedTable = (IRoomsRepository)table.GetValue(this);
+                return;
+            }
+            else if(table.PropertyType == typeof(IHotelHotelFacilityRepository))
+            {
+                selectedTable = (IHotelHotelFacilityRepository)table.GetValue(this);
                 return;
             }
             selectedTable = (ICountriesRepository)table.GetValue(this);

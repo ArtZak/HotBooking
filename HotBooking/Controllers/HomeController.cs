@@ -43,6 +43,7 @@ namespace HotBooking.Controllers
                 {
                     hotels.AddRange(city.Hotels);
                 }
+                ViewBag.DestinationName = hotels[0]?.City.Country.Title;
             }
             else
             {
@@ -56,7 +57,8 @@ namespace HotBooking.Controllers
                 else
                 {
                     var city = selectedCity.FirstOrDefault();
-                    hotels = city.Hotels;
+                    hotels = city.Hotels?.ToList();
+                    ViewBag.DestinationName = hotels[0]?.City.Title;
                 }
             }
 
@@ -64,8 +66,7 @@ namespace HotBooking.Controllers
             {
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CityName = dataManager.Cities.GetById(hotels[0].CityId).Title;
+            
             return View(hotels);
         }
 

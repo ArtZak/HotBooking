@@ -40,10 +40,13 @@ namespace HotBooking
             services.AddTransient<IReviewsRepository, EFReviewsRepository>();
             services.AddTransient<IRoomsRepository, EFRoomsRepository>();
             services.AddTransient<IRoomFacilitiesRepository, EFRoomFacilitiesRepository>();
+            services.AddTransient<IHotelHotelFacilityRepository, EFHotelHotelFacilitiesRepository>();
             services.AddTransient<DataManager>();
 
             //Connecting DB context
-            services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
+            services.AddDbContext<AppDbContext>(
+                x => x.UseLazyLoadingProxies()
+                      .UseSqlServer(Config.ConnectionString));
 
             //Setting up the identity system
             services.AddIdentity<IdentityUser, IdentityRole>(opts =>

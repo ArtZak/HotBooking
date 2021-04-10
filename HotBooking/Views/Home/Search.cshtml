@@ -1,7 +1,9 @@
 ﻿@using HotBooking.Domain.Entities
-
+@using System.IO
 @model List<Hotel>
-
+@{ 
+    Layout = "_LayoutSearch";
+}
 <body>
     <div class="wrapper">
         <div class="content">
@@ -156,18 +158,19 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </aside>
                     <main>
-                        @foreach(var hotel in Model)
-                        {
-                            <article>
-                                <div class="article__title">
-                                    <h2>@ViewBag.CityName: @Model.Count properties found</h2>
-                                </div>
+                        <article>
+                            <div class="article__title">
+                                <h2>@ViewBag.DestinationName: @Model.Count properties found</h2>
+                            </div>
+                            @foreach (var hotel in Model)
+                            {
                                 <div class="search__card">
                                     <div class="card__row">
                                         <div class="card__image">
-                                            <img src="@hotel.TitleImagePath" alt="">
+                                            <img src="~/@hotel.TitleImagePath" alt="">
                                         </div>
                                         <div class="card__desc">
                                             <div class="card__title">
@@ -197,11 +200,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </article>
-                        }          
+
+                            }
+                        </article>
                     </main>
                 </div>
             </div>
-        </div>       
+        </div>
     </div>
 </body>

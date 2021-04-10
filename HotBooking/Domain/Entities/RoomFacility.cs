@@ -7,6 +7,6 @@ namespace HotBooking.Domain.Entities
 {
     public class RoomFacility : EntityBase
     {
-        public List<Room> Rooms { get; set; }       
+        public virtual ICollection<Room> Rooms { get; set; }       
     }
 }

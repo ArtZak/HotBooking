@@ -8,11 +8,11 @@ namespace HotBooking.Domain.Entities
 {
     public class City : EntityBase
     {
-        public List<Hotel> Hotels { get; set; }
-
         public bool IsFavorite { get; set; } = false;
 
         [Required]
         public Guid CountryId { get; set; }      
+        public virtual Country Country { get; set; }
+        public virtual ICollection<Hotel> Hotels { get; set; }
     }
 }

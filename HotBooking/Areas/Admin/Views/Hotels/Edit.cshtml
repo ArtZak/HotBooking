@@ -74,6 +74,10 @@
                 <input asp-for="CityId" class="form-control" />
                 <span asp-validation-for="CityId"></span>
             </div>
+            <div class="mb-3">
+                <label for="CityId" class="form-label"></label>
+                <select multiple="multiple" name="facilities" asp-items="(List<SelectListItem>)ViewBag.Facilities" class="form-select"></select>
+            </div>           
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

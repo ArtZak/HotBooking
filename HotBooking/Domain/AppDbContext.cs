@@ -22,10 +22,15 @@ namespace HotBooking.Domain
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomFacility> RoomFacilities { get; set; }
+        public DbSet<HotelHotelFacility> HotelHotelFacilities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //Setting Hotel Hotel facility binding table PK.
+            modelBuilder.Entity<HotelHotelFacility>()
+                .HasKey(cs => new { cs.HotelId, cs.HotelFacilityId });
 
             //Adding new user role to database.
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole

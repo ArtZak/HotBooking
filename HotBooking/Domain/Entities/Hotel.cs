@@ -21,10 +21,12 @@ namespace HotBooking.Domain.Entities
         public float ReviewRating { get; set; }
         public bool IsFavorite { get; set; } = false;
 
-        public List<Room> Rooms { get; set; }
-        public List<HotelFacility> HotelFacilities { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<HotelHotelFacility> HotelHotelFacilities { get; set; }
 
         [Required]
         public Guid CityId { get; set; }
+        public virtual City City { get; set; }
     }
 }

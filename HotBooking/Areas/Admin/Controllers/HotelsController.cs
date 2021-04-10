@@ -3,6 +3,7 @@ using HotBooking.Domain.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,13 +25,14 @@ namespace HotBooking.Areas.Admin.Controllers
         }
 
         public IActionResult Edit(Guid id)
-        {
+        {   
+            ViewBag.Facilities = dataManager.HotelFacilities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = dataManager.HotelHotelFacilities.GetById(id, r.Id) != null}).ToList();
             var entity = id == default ? new Hotel() : dataManager.Hotels.GetById(id);
             return View(entity);
         }
 
         [HttpPost]
-        public IActionResult Edit(Hotel model, IFormFile titleImageFile, string defaultImagePath)
+        public IActionResult Edit(Hotel model, IFormFile titleImageFile, string defaultImagePath, List<String> facilities)
         {
             if (ModelState.IsValid)
             {
@@ -48,6 +50,38 @@ namespace HotBooking.Areas.Admin.Controllers
                     model.TitleImagePath = defaultImagePath;
                 }
                 dataManager.Hotels.Save(model);
+
+                var hotelFacilities = dataManager.HotelHotelFacilities.GetAll().Where(r => r.HotelId == model.Id);
+                List<(Guid, Guid)> deletable = new List<(Guid, Guid)>();
+                foreach (var item in hotelFacilities)
+                {
+                    bool flag = false;
+                    foreach (var item2 in facilities)
+                    {
+                        if (item.HotelFacilityId == Guid.Parse(item2))
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+
+                    if (!flag)
+                    {
+                        deletable.Add((model.Id, item.HotelFacilityId));
+                    }
+                }
+                dataManager.HotelHotelFacilities.Delete(deletable);
+
+                List<HotelHotelFacility> hotelHotelFacilities = new List<HotelHotelFacility>();
+                foreach (var item in facilities)
+                {
+                    var facilityId = Guid.Parse(item);
+                    hotelHotelFacilities.Add(new HotelHotelFacility { HotelId = model.Id, HotelFacilityId = facilityId });
+                    
+                }
+
+                dataManager.HotelHotelFacilities.Save(hotelHotelFacilities);
+
                 return RedirectToAction("Read", "Home");
             }
             return View(model);

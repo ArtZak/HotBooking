@@ -51,8 +51,8 @@
             </div>
             <div class="mb-3">
                 <label asp-for="TitleImagePath" class="form-label"></label>
-                <input type="file" name="titleImageFile" class="form-control" accept="image/*"/>
-                <input type="text" name="defaultImagePath" hidden value="@Model.TitleImagePath"/>
+                <input type="file" name="titleImageFile" class="form-control" accept="image/*" />
+                <input type="text" name="defaultImagePath" hidden value="@Model.TitleImagePath" />
                 <div>
                     <img src="~/@Model.TitleImagePath" alt="" />
                 </div>
@@ -61,7 +61,7 @@
                 <label asp-for="CountryId" class="form-label"></label>
                 <input asp-for="CountryId" class="form-control" />
                 <span asp-validation-for="CountryId"></span>
-            </div>
+            </div>            
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
