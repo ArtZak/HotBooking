@@ -70,12 +70,11 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label asp-for="CityId" class="form-label"></label>
-                <input asp-for="CityId" class="form-control" />
-                <span asp-validation-for="CityId"></span>
+                <label for="city" class="form-label"></label>
+                <select name="city" asp-items="(List<SelectListItem>)ViewBag.Cities" class="form-select"></select>
             </div>
             <div class="mb-3">
-                <label for="CityId" class="form-label"></label>
+                <label for="facilities" class="form-label"></label>
                 <select multiple="multiple" name="facilities" asp-items="(List<SelectListItem>)ViewBag.Facilities" class="form-select"></select>
             </div>           
 

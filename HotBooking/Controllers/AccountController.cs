@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HotBooking.Controllers
 {
-    [Authorize]
+    
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;

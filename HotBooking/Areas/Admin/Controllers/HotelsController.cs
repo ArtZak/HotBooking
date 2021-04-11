@@ -26,13 +26,14 @@ namespace HotBooking.Areas.Admin.Controllers
 
         public IActionResult Edit(Guid id)
         {   
-            ViewBag.Facilities = dataManager.HotelFacilities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = dataManager.HotelHotelFacilities.GetById(id, r.Id) != null}).ToList();
             var entity = id == default ? new Hotel() : dataManager.Hotels.GetById(id);
+            ViewBag.Facilities = dataManager.HotelFacilities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = dataManager.HotelHotelFacilities.GetById(id, r.Id) != null}).ToList();
+            ViewBag.Cities = dataManager.Cities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = entity.CityId == r.Id }).ToList();         
             return View(entity);
         }
 
         [HttpPost]
-        public IActionResult Edit(Hotel model, IFormFile titleImageFile, string defaultImagePath, List<String> facilities)
+        public IActionResult Edit(Hotel model, IFormFile titleImageFile, string defaultImagePath, string city, List<String> facilities)
         {
             if (ModelState.IsValid)
             {
@@ -49,6 +50,7 @@ namespace HotBooking.Areas.Admin.Controllers
                 {
                     model.TitleImagePath = defaultImagePath;
                 }
+                model.CityId = Guid.Parse(city);
                 dataManager.Hotels.Save(model);
 
                 var hotelFacilities = dataManager.HotelHotelFacilities.GetAll().Where(r => r.HotelId == model.Id);

@@ -50,9 +50,12 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label asp-for="HotelId" class="form-label"></label>
-                <input asp-for="HotelId" class="form-control" />
-                <span asp-validation-for="HotelId"></span>
+                <label for="hotel" class="form-label"></label>
+                <select name="hotel" asp-items="(List<SelectListItem>)ViewBag.Hotels" class="form-select"></select>
+            </div>
+            <div class="mb-3">
+                <label for="facilities" class="form-label"></label>
+                <select multiple="multiple" name="facilities" asp-items="(List<SelectListItem>)ViewBag.Facilities" class="form-select"></select>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -41,6 +41,7 @@ namespace HotBooking
             services.AddTransient<IRoomsRepository, EFRoomsRepository>();
             services.AddTransient<IRoomFacilitiesRepository, EFRoomFacilitiesRepository>();
             services.AddTransient<IHotelHotelFacilityRepository, EFHotelHotelFacilitiesRepository>();
+            services.AddTransient<IRoomRoomFacilityRepository, EFRoomRoomFacilitiesRepository>();
             services.AddTransient<DataManager>();
 
             //Connecting DB context

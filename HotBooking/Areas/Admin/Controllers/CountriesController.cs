@@ -36,7 +36,7 @@ namespace HotBooking.Areas.Admin.Controllers
             {
                 if (titleImageFile != null)
                 {
-                    model.TitleImagePath = "images/countries" + titleImageFile.FileName;
+                    model.TitleImagePath = "images/countries/" + titleImageFile.FileName;
                     using (var stream = new FileStream(Path.Combine(hostEnvironment.WebRootPath, model.TitleImagePath), FileMode.Create))
                     {
                         titleImageFile.CopyTo(stream);
