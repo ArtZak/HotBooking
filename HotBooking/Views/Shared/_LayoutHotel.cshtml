@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    @await Html.PartialAsync("MetatagsPartial")
+    @await Html.PartialAsync("CssPartial")
+    <link rel="stylesheet" href="~/css/search.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hotel.css" asp-append-version="true">
+    @await Html.PartialAsync("FontsPartial")
+</head>
+<body>
+    <div class="wrapper">
+        @await Html.PartialAsync("HeaderPartial")
+        @await Html.PartialAsync("PosterPartial")
+
+        @RenderBody()
+
+        @await Html.PartialAsync("FooterPartial")
+    </div>
+    @await Html.PartialAsync("ScriptsPartial")
+</body>
+</html>

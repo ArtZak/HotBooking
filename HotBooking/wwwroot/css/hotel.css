@@ -1,0 +1,48 @@
+﻿.article__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .article__left .title {
+        margin-bottom: 20px;
+    }
+
+.article__info {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+    .article__info img {
+        width: 20px;
+        height: 20px;
+    }
+
+hr {
+    margin-top: 15px;
+}
+
+.gallery {
+    display: flex;
+}
+
+.gallery__big {
+    flex-grow: 3;
+}
+
+    .gallery__big img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.gallery__column {
+    display: flex;
+    flex-direction: column;
+}
+
+    .gallery__column img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }

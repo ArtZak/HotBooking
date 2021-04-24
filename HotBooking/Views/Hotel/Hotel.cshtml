@@ -1,0 +1,176 @@
+﻿@using HotBooking.Domain.Entities
+@model Hotel
+@{ 
+    Layout = "_LayoutHotel";
+}
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="container">
+                <div class="content__row">
+                    <aside>
+                        <form action="" class="poster__form aside__form">
+                            <div class="form__row">
+                                <div class="form__item-column">
+                                    <label for="hotels_name">Input hotels name or city</label>
+                                    <input type="text" id="hotels_name" placeholder="Hotels name or city">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="arrival_date_london">Arrival date</label>
+                                    <input type="date" id="arrival_date_london">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="departure_date_paris">Date of departure</label>
+                                    <input type="date" id="departure_date_paris">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="number_of_adults_paris">Adults</label>
+                                    <input type="number" id="number_of_adults_paris" class="number" value="1" min="1" max="9">
+                                </div>
+
+                                <div class="row">
+                                    <div class="form__item-column">
+                                        <label for="number_of_children_paris">Children</label>
+                                        <input type="number" id="number_of_children_paris" class="number" min="0" max="6">
+                                    </div>
+
+                                    <div class="form__item-column">
+                                        <label for="number_of_rooms_paris">Rooms</label>
+                                        <input type="number" id="number_of_rooms_paris" class="number" value="1" min="1" max="9">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="submit">Check prices</button>
+                            </div>
+                        </form>
+                    </aside>
+                    <main>
+                        <article>
+                            <div class="article__row">
+                                <div class="article__left">
+                                    <div class="title">
+                                        Hotel @Model.Title in @Model.City.Title
+                                    </div>
+                                    <div class="article__info">
+                                        <img src="../images/bookingImage.jpg" alt="">
+                                        <div class="subtitle">
+                                            @Model.Adress, @Model.City.Title
+                                        </div>
+                                    </div>
+                                    <div class="article__info">
+                                        <img src="../images/bookingImage.jpg" alt="">
+                                        <div class="subtitle">
+                                            @{
+                                                var count = 0;
+                                                foreach (var item in Model.Rooms)
+                                                {
+                                                    count += item.Count;
+                                                }
+                                            }@count numbers
+                                        </div>
+                                    </div>
+                                </div>
+                                <form asp-controller="Review" asp-action="Index" method="post">
+                                    <button class="submit-btn">Send Review</button>
+                                </form>
+                            </div>
+                        </article>
+                        <hr>
+                        <article>
+                            <div class="gallery">
+                                <div class="gallery__big">
+                                    <img src="~/@Model.TitleImagePath" alt="">
+                                </div>
+                                <div class="gallery__column">
+                                    @{
+                                        var rooms = Model.Rooms.ToList();
+                                        string path;
+                                        for (int i = 1; i <= 3; i++)
+                                        {
+                                            if(rooms[rooms.Count % i].TitleImagePath == "" || rooms[rooms.Count % i].TitleImagePath == null)
+                                            {
+                                                path = Model.TitleImagePath;
+                                            }
+                                            else
+                                            {
+                                                path = rooms[rooms.Count % i].TitleImagePath;
+                                            }                                            
+                                            <img src="~/@path" alt="">
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </article>
+                        <article>
+                            <div class="title">
+                                About @Model.Title
+                            </div>
+                            <div class="description">
+                                @Model.Text
+                            </div>
+                        </article>
+                        <article>
+                            <div class="title">
+                                Most popular facilties
+                            </div>
+                            <div class="description">
+                                @{ 
+                                    foreach (var item in Model.HotelHotelFacilities)
+                                    {
+                                        <span>@item.HotelFacility.Title, </span>
+                                    }
+                                }
+                            </div>
+                        </article>
+                        <article>
+                            <table>
+                                <tr>
+                                    <td>Room type</td>
+                                    <td>Sleeps</td>
+                                    <td>Today's price</td>
+                                    <td>Select rooms</td>
+                                    <td>Reserve</td>
+                                </tr>
+                                @foreach (var item in ViewBag.Rooms)
+                                {
+                                    <tr>
+                                        <td>@item.Key.Title</td>
+                                        <td></td>
+                                        <td>AMD @item.Key.PricePerNight</td>                            
+                                        <td>
+                                            <form asp-controller="Hotel" asp-action="Reserve" method="post">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <select name="roomsCount" id="">
+                                                                @for (int i = 1; i <= item.Value; i++)
+                                                                {
+                                                                    <option value="@i">@i (AMD @{var price = item.Key.PricePerNight * i;}@price)</option>
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="roomId" value="@item.Key.Id" hidden />
+                                                            <input type="text" name="arrival" value="@ViewBag.Arrival" hidden />
+                                                            <input type="text" name="departure" value="@ViewBag.Departure" hidden />
+                                                            <input type="text" name="guests" value="@ViewBag.Guests" hidden />
+                                                            <input type="submit" value="Reserve">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </form>                                      
+                                        </td>
+                                    </tr>
+                                }                                
+                            </table>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,352 @@
+﻿@using HotBooking.Domain.Entities
+@using System.IO
+@model List<KeyValuePair<Hotel, bool>>
+@{ 
+    Layout = "_LayoutSearch";
+}
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="container">
+                <div class="content__row">
+                    <aside>
+                        <form action="" class="poster__form aside__form">
+                            <div class="form__row">
+                                <div class="form__item-column">
+                                    <label for="hotels_name">Input hotels name or city</label>
+                                    <input type="text" id="hotels_name" placeholder="Hotels name or city">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="arrival_date_london">Arrival date</label>
+                                    <input type="date" id="arrival_date_london">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="departure_date_paris">Date of departure</label>
+                                    <input type="date" id="departure_date_paris">
+                                </div>
+
+                                <div class="form__item-column">
+                                    <label for="number_of_adults_paris">Adults</label>
+                                    <input type="number" id="number_of_adults_paris" class="number" value="1" min="1" max="9">
+                                </div>
+
+                                <div class="row">
+                                    <div class="form__item-column">
+                                        <label for="number_of_children_paris">Children</label>
+                                        <input type="number" id="number_of_children_paris" class="number" min="0" max="6">
+                                    </div>
+
+                                    <div class="form__item-column">
+                                        <label for="number_of_rooms_paris">Rooms</label>
+                                        <input type="number" id="number_of_rooms_paris" class="number" value="1" min="1" max="9">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="submit">Check prices</button>
+                            </div>
+                        </form>
+
+                        <form asp-controller="Search" asp-action="Filter">
+                            <div class="aside__filter-by">
+                                <div class="filter-by__title">
+                                    Filter by:
+                                </div>
+                                <hr>
+                                <div class="filter-by__item">
+                                    <div class="filter-by__title2">
+                                        Your budget (per night)
+                                    </div>
+                                    <div class="filter-by__options">
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="budget" value="31400">
+                                                <div class="options__desc">
+                                                    AMD 0 - AMD 31,400
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="budget" value="62800">
+                                                <div class="options__desc">
+                                                    AMD 31,400 - AMD 62,800
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="budget" value="94300">
+                                                <div class="options__desc">
+                                                    AMD 62,800 - AMD 94,300
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="budget" value="125000">
+                                                <div class="options__desc">
+                                                    AMD 94,300 - AMD 125,000
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="budget" value="@int.MaxValue">
+                                                <div class="options__desc">
+                                                    AMD 125,000 +
+                                                </div>
+                                            </div>
+                                            <div class="options__count">435</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="filter-by__item">
+                                    <div class="filter-by__title2">
+                                        Star rating
+                                    </div>
+                                    <div class="filter-by__options">
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="stars" value="1">
+                                                <div class="options__desc">
+                                                    1 star
+                                                </div>
+                                            </div>
+                                            <div class="options__count">15</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="stars" value="2">
+                                                <div class="options__desc">
+                                                    2 stars
+                                                </div>
+                                            </div>
+                                            <div class="options__count">65</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="stars" value="3">
+                                                <div class="options__desc">
+                                                    3 stars
+                                                </div>
+                                            </div>
+                                            <div class="options__count">409</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="stars" value="4">
+                                                <div class="options__desc">
+                                                    4 stars
+                                                </div>
+                                            </div>
+                                            <div class="options__count">237</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="stars" value="5">
+                                                <div class="options__desc">
+                                                    5 stars
+                                                </div>
+                                            </div>
+                                            <div class="options__count">43</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="stars" value="0">
+                                                <div class="options__desc">
+                                                    Unrated
+                                                </div>
+                                            </div>
+                                            <div class="options__count">159</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="filter-by__item">
+                                    <div class="filter-by__title2">
+                                        Distance from centre of Paris
+                                    </div>
+                                    <div class="filter-by__options">
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="distance" value="1">
+                                                <div class="options__desc">
+                                                    Less than 1km
+                                                </div>
+                                            </div>
+                                            <div class="options__count">75</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="distance" value="3">
+                                                <div class="options__desc">
+                                                    Less than 3km
+                                                </div>
+                                            </div>
+                                            <div class="options__count">492</div>
+                                        </div>
+                                        <div class="options__row">
+                                            <div class="options__row_inner">
+                                                <input type="checkbox" name="distance" value="5">
+                                                <div class="options__desc">
+                                                    Less than 5km
+                                                </div>
+                                            </div>
+                                            <div class="options__count">869</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="filter-by__item">
+                                    <div class="filter-by__title2">
+                                        Facilities
+                                    </div>
+                                    <div class="filter-by__options">
+                                        @foreach (var facility in ViewBag.Facilities)
+                                        {
+                                            <div class="options__row">
+                                                <div class="options__row_inner">
+                                                    <input type="checkbox" name="hotelFacilities" value="@facility.Id">
+                                                    <div class="options__desc">
+                                                        @facility.Title
+                                                    </div>
+                                                </div>
+                                                <div class="options__count">574</div>
+                                            </div>
+                                        }                                                                              
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="filter-by__item">
+                                    <div class="filter-by__title2">
+                                        Room facilities
+                                    </div>
+                                    <div class="filter-by__options">
+                                        @foreach (var facility in ViewBag.RoomFacilities)
+                                        {
+                                            <div class="options__row">
+                                                <div class="options__row_inner">
+                                                    <input type="checkbox" name="roomFacilities" value="@facility.Id">
+                                                    <div class="options__desc">
+                                                        @facility.Title
+                                                    </div>
+                                                </div>
+                                                <div class="options__count">574</div>
+                                            </div>
+                                        }                                        
+                                    </div>
+                                </div>
+                                @foreach (var item in Model)
+                                {
+                                    <input name="hotelsId" value="@item.Key.Id" hidden/>
+                                }
+                                <input name="destination" value="@ViewBag.DestinationName" hidden/>
+                                <button type="submit" class="submit">Filter</button>
+                            </div>
+                        </form>                      
+                    </aside>
+                    <main>
+                        <article>
+                            <div class="article__title">
+                                <h2>@ViewBag.DestinationName: @Model.Count(x => x.Value) properties found</h2>
+                            </div>
+                            @foreach (var hotel in Model.Where(x => x.Value))
+                            {
+                                <div class="search__card">
+                                    <div class="card__row">
+                                        <div class="card__left">
+                                            <div class="card__image">
+                                                <img src="~/@hotel.Key.TitleImagePath" alt="">
+                                            </div>
+                                            <div class="card__desc">
+                                                <div class="card__head">
+                                                    <div class="card__title">
+                                                        @hotel.Key.Title
+                                                    </div>
+                                                    <div>
+                                                        @for (var i = 0; i < hotel.Key.Stars; i++)
+                                                        {
+                                                            <img src="~/images/icons/star.png" alt="" style="width: 30px; height: 30px; display: inline;" />
+                                                        }
+                                                    </div>
+                                                </div>                                               
+                                                <div class="card__subtitle">
+                                                    <p>@hotel.Key.Adress, @hotel.Key.City.Title  @hotel.Key.DistanceToCenter km from centre</p>
+                                                    <p>@hotel.Key.Subtitle</p>
+                                                    <p>
+                                                        @foreach (var item in ViewBag.Facilities)
+                                                        {
+                                                            @item.Title<span>, </span>
+                                                        }
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>                                       
+                                        <div class="card__info">
+                                            <div class="review">
+                                                <div class="review__text">
+                                                    @{
+                                                        string str;
+                                                        if (@hotel.Key.ReviewRating >= 9)
+                                                        {
+                                                            str = "Superb";
+                                                        }
+                                                        else if (@hotel.Key.ReviewRating >= 8)
+                                                        {
+                                                            str = "Very Good";
+                                                        }
+                                                        else if (@hotel.Key.ReviewRating >= 7)
+                                                        {
+                                                            str = "VGood";
+                                                        }
+                                                        else if (@hotel.Key.ReviewRating >= 6)
+                                                        {
+                                                            str = "Pleasant";
+                                                        }
+                                                        else
+                                                        {
+                                                            str = "Bad";
+                                                        }
+                                                    }
+                                                    <p>@str</p>
+                                                    <p>@hotel.Key.Reviews.Count reviews</p>
+                                                </div>
+                                                <div class="review__digit">
+                                                    @hotel.Key.ReviewRating
+                                                </div>
+                                            </div>
+                                            <div class="price">
+                                                AMD @{ var price = 0.0M;
+                                                        if (hotel.Key.Rooms?.Count != 0)
+                                                        {
+                                                            price = hotel.Key.Rooms?.Aggregate((curr, next) => (curr == null || next.PricePerNight < curr.PricePerNight) ? next : curr)?.PricePerNight ?? 0.0M;
+                                                        }                                    
+                                                    }
+                                                    @price
+                                            </div>
+                                            <form asp-controller="Hotel" asp-action="Hotel" method="post" style="z-index: 100;">
+                                                <input type="text" name="hotelId" value="@hotel.Key.Id" hidden />
+                                                <input type="text" name="arrival" value="@ViewBag.Arrival" hidden />
+                                                <input type="text" name="departure" value="@ViewBag.Departure" hidden />
+                                                <input type="text" name="guests" value="@ViewBag.Guests" hidden />
+                                                <input type="text" name="roomsCount" value="@ViewBag.Rooms" hidden />
+                                                <button type="submit" class="submit">See availability</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                             }
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

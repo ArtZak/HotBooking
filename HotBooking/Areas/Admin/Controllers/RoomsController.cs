@@ -27,13 +27,13 @@ namespace HotBooking.Areas.Admin.Controllers
         public IActionResult Edit(Guid id)
         {
             var entity = id == default ? new Room() : dataManager.Rooms.GetById(id);
-            ViewBag.Facilities = dataManager.HotelFacilities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = dataManager.RoomRoomFacilities.GetById(id, r.Id) != null }).ToList();
+            ViewBag.Facilities = dataManager.RoomFacilities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = dataManager.RoomRoomFacilities.GetById(id, r.Id) != null }).ToList();
             ViewBag.Hotels = dataManager.Hotels.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = entity.HotelId == r.Id }).ToList();
             return View(entity);
         }
 
         [HttpPost]
-        public IActionResult Edit(Room model, IFormFile titleImageFile, string defaultImagePath, List<String> facilities)
+        public IActionResult Edit(Room model, IFormFile titleImageFile, string defaultImagePath, List<String> facilities, String hotel)
         {
             if (ModelState.IsValid)
             {
@@ -50,6 +50,7 @@ namespace HotBooking.Areas.Admin.Controllers
                 {
                     model.TitleImagePath = defaultImagePath;
                 }
+                model.HotelId = Guid.Parse(hotel);
                 dataManager.Rooms.Save(model);
 
                 var roomFacilities = dataManager.RoomRoomFacilities.GetAll().Where(r => r.RoomId == model.Id);

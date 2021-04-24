@@ -24,6 +24,7 @@ namespace HotBooking.Domain
         public DbSet<RoomFacility> RoomFacilities { get; set; }
         public DbSet<HotelHotelFacility> HotelHotelFacilities { get; set; }
         public DbSet<RoomRoomFacility> RoomRoomFacilities { get; set; }
+        public DbSet<BookedDate> BookedDates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

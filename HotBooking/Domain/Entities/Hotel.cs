@@ -12,13 +12,18 @@ namespace HotBooking.Domain.Entities
         public byte Stars { get; set; }
 
         [Display(Name = "Distance to center")]
-        public float DistanceToCenter { get; set; }
+        public double DistanceToCenter { get; set; }
 
         [Display(Name = "Food")]
         public string Food { get; set; }
 
         [Display(Name = "Review rating")]
-        public float ReviewRating { get; set; }
+        public double ReviewRating { get; set; }
+        
+        [Display(Name = "Adress")]
+        public string Adress { get; set; }
+
+        [Display(Name = "Is Favorite")]
         public bool IsFavorite { get; set; } = false;
 
         public virtual ICollection<Room> Rooms { get; set; }

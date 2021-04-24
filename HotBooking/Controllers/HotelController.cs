@@ -1,0 +1,80 @@
+﻿using HotBooking.Domain;
+using HotBooking.Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace HotBooking.Controllers
+{
+    public class HotelController : Controller
+    {
+        private readonly DataManager dataManager;
+
+        public HotelController(DataManager dataManager)
+        {
+            this.dataManager = dataManager;
+        }
+
+        [HttpPost]
+        public IActionResult Hotel(Guid hotelId, DateTime arrival, DateTime departure, int roomsCount, int guests)
+        {
+            var currHotel = dataManager.Hotels.GetById(hotelId);
+            
+            ViewBag.Arrival = arrival;
+            ViewBag.Departure = departure;
+            ViewBag.RoomsCount = roomsCount;
+            ViewBag.Guests = guests;
+
+            var rooms = new List<KeyValuePair<Room, int>>();
+
+            foreach (var room in currHotel.Rooms)
+            {
+                var count = dataManager.BookedDates.GetAll().Count(d => d.RoomId == room.Id && (d.StartDate <= arrival && d.EndDate >= arrival || d.StartDate <= departure && d.EndDate >= departure));
+                if (count < room.Count)
+                {
+                    rooms.Add(new KeyValuePair<Room, int>(room, room.Count - count));
+                }
+            }
+
+            ViewBag.Rooms = rooms;
+
+            return View(currHotel);
+        }
+
+        public IActionResult Reserve(int roomsCount, string roomId, DateTime arrival, DateTime departure, int guests)
+        {
+            ViewBag.Arrival = arrival;
+            ViewBag.Departure = departure;
+            ViewBag.Count = roomsCount;
+            ViewBag.Guests = guests;
+            ViewBag.RoomId = roomId;
+
+            return View(new BookedDate() { StartDate = arrival, EndDate = departure, RoomId = Guid.Parse(roomId) });
+        }
+
+        public IActionResult CompleteBooking(BookedDate model, int roomsCount, int guests)
+        {
+            List<BookedDate> models = new List<BookedDate>();
+
+            for (int i = 0; i < roomsCount; i++)
+            {
+                var newModel = new BookedDate()
+                {
+                    Email = model.Email,
+                    EndDate = model.EndDate,
+                    Phone = model.Phone,
+                    RoomId = model.RoomId,
+                    StartDate = model.StartDate,
+                    UserName = model.UserName
+                };
+                models.Add(newModel);
+            }
+
+            dataManager.BookedDates.Save(models);
+
+            return RedirectToAction("Index", "Home");
+        }
+    }
+}

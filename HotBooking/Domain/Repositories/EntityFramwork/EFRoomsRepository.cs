@@ -43,7 +43,7 @@ namespace HotBooking.Domain.Repositories.EntityFramwork
 
         public List<String> GetDataNames()
         {
-            var list = new List<String>() { "Title", "Subtitle", "Text", "Title image path", "Hotel Id", "Date added" };
+            var list = new List<String>() { "Title", "Subtitle", "Text", "Price", "Visitors", "Count", "Title image path", "Hotel Id", "Date added" };
             return list;
         }
 
@@ -52,8 +52,11 @@ namespace HotBooking.Domain.Repositories.EntityFramwork
             var list = new List<String>();
 
             list.Add(entity.Title.ToString());
-            list.Add(entity.Subtitle.ToString());
-            list.Add(entity.Text.ToString());
+            list.Add(entity.Subtitle?.ToString());
+            list.Add(entity.Text?.ToString());
+            list.Add(entity.PricePerNight.ToString());
+            list.Add(entity.Visitors.ToString());
+            list.Add(entity.Count.ToString());
             list.Add(entity.TitleImagePath?.ToString());
             list.Add(entity.HotelId.ToString());
             list.Add(entity.DateAdded.ToString());

@@ -12,16 +12,21 @@ namespace HotBooking.Models
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        
+        [Required]
+        [Display(Name = "User name")]
+        [DataType(DataType.Text)]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Password missmatch")]
         [DataType(DataType.Password)]
-        [Display(Name = "Подтвердить пароль")]
+        [Display(Name = "Confirm password")]
         public string PasswordConfirm { get; set; }
     }
 }

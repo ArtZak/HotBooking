@@ -42,6 +42,21 @@
                 <span asp-validation-for="Text"></span>
             </div>
             <div class="mb-3">
+                <label asp-for="PricePerNight" class="form-label"></label>
+                <input asp-for="PricePerNight" class="form-control" />
+                <span asp-validation-for="PricePerNight"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Visitors" class="form-label"></label>
+                <input asp-for="Visitors" class="form-control" />
+                <span asp-validation-for="Visitors"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Count" class="form-label"></label>
+                <input asp-for="Count" class="form-control" />
+                <span asp-validation-for="Count"></span>
+            </div>
+            <div class="mb-3">
                 <label asp-for="TitleImagePath" class="form-label"></label>
                 <input type="file" name="titleImageFile" class="form-control" accept="image/*" />
                 <input type="text" name="defaultImagePath" hidden value="@Model.TitleImagePath" />

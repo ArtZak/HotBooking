@@ -21,6 +21,7 @@ namespace HotBooking.Domain
         public IRoomFacilitiesRepository RoomFacilities { get; set; }
         public IHotelHotelFacilityRepository HotelHotelFacilities { get; set; }
         public IRoomRoomFacilityRepository RoomRoomFacilities { get; set; }
+        public IBookedDatesRepository BookedDates { get; set; }
 
         public DataManager(ITextFieldsRepository textFieldsRepository,
                             IInspirationItemsRepository inspirationItemsRepository,
@@ -32,7 +33,8 @@ namespace HotBooking.Domain
                             IRoomsRepository roomsRepository,
                             IRoomFacilitiesRepository roomFacilitiesRepository,
                             IHotelHotelFacilityRepository hotelHotelFacilityRepository,
-                            IRoomRoomFacilityRepository roomRoomFacilityRepository)
+                            IRoomRoomFacilityRepository roomRoomFacilityRepository,
+                            IBookedDatesRepository bookedDatesRepository)
         {
             TextFields = textFieldsRepository;
             InspirationItems = inspirationItemsRepository;
@@ -45,6 +47,7 @@ namespace HotBooking.Domain
             RoomFacilities = roomFacilitiesRepository;
             HotelHotelFacilities = hotelHotelFacilityRepository;
             RoomRoomFacilities = roomRoomFacilityRepository;
+            BookedDates = bookedDatesRepository;
         }
 
         public void GetSelectedTable(PropertyInfo table, out dynamic selectedTable)

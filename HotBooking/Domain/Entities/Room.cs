@@ -9,6 +9,12 @@ namespace HotBooking.Domain.Entities
     public class Room : EntityBase
     {
         [Required]
+        public decimal PricePerNight { get; set; }
+        [Required]
+        public int Visitors { get; set; }
+        [Required]
+        public int Count { get; set; }
+        [Required]
         public Guid HotelId { get; set; }
         public virtual Hotel Hotel { get; set; }
         public virtual ICollection<RoomFacility> RoomFacilities { get; set; }

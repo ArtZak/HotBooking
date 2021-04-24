@@ -19,10 +19,16 @@
                         </div>
                         <input asp-for="Email" type="email" placeholder="Email">
                         <span asp-validation-for="Email"></span>
+
+                        <input asp-for="UserName" type="text" placeholder="User name">
+                        <span asp-validation-for="UserName"></span>
+
                         <input asp-for="Password" type="password" placeholder="Password">
                         <span asp-validation-for="Password"></span>
+
                         <input asp-for="PasswordConfirm" type="password" placeholder="Confirm Password">
                         <span asp-validation-for="PasswordConfirm"></span>
+
                         <p class="register-form__agreement">By registering a HotBooking account, I acknowledge that I have read and agree to HotBooking's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a>.</p>
                         <input type="submit" value="Agree and register" class="register-form__button">
                     </form>
