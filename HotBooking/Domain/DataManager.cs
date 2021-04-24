@@ -1,5 +1,6 @@
 ﻿using HotBooking.Domain.Entities;
 using HotBooking.Domain.Repositories.Abstract;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace HotBooking.Domain
         public IHotelHotelFacilityRepository HotelHotelFacilities { get; set; }
         public IRoomRoomFacilityRepository RoomRoomFacilities { get; set; }
         public IBookedDatesRepository BookedDates { get; set; }
+        public UserManager<User> UserManager { get; set; }
 
         public DataManager(ITextFieldsRepository textFieldsRepository,
                             IInspirationItemsRepository inspirationItemsRepository,
@@ -34,8 +36,9 @@ namespace HotBooking.Domain
                             IRoomFacilitiesRepository roomFacilitiesRepository,
                             IHotelHotelFacilityRepository hotelHotelFacilityRepository,
                             IRoomRoomFacilityRepository roomRoomFacilityRepository,
-                            IBookedDatesRepository bookedDatesRepository)
-        {
+                            IBookedDatesRepository bookedDatesRepository,
+                            UserManager<User> userManager)
+        {           
             TextFields = textFieldsRepository;
             InspirationItems = inspirationItemsRepository;
             Cities = citiesRepository;
@@ -48,6 +51,7 @@ namespace HotBooking.Domain
             HotelHotelFacilities = hotelHotelFacilityRepository;
             RoomRoomFacilities = roomRoomFacilityRepository;
             BookedDates = bookedDatesRepository;
+            UserManager = userManager;
         }
 
         public void GetSelectedTable(PropertyInfo table, out dynamic selectedTable)

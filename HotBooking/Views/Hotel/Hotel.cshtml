@@ -56,13 +56,13 @@
                                         Hotel @Model.Title in @Model.City.Title
                                     </div>
                                     <div class="article__info">
-                                        <img src="../images/bookingImage.jpg" alt="">
+                                        <img src="~/images/icons/location.png" alt="">
                                         <div class="subtitle">
                                             @Model.Adress, @Model.City.Title
                                         </div>
                                     </div>
                                     <div class="article__info">
-                                        <img src="../images/bookingImage.jpg" alt="">
+                                        <img src="~/images/icons/hotelKey (2).png" alt="">
                                         <div class="subtitle">
                                             @{
                                                 var count = 0;
@@ -75,6 +75,7 @@
                                     </div>
                                 </div>
                                 <form asp-controller="Review" asp-action="Index" method="post">
+                                    <input name="currHotel" value="@Model.Id" hidden />
                                     <button class="submit-btn">Send Review</button>
                                 </form>
                             </div>

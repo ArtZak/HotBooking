@@ -1,4 +1,5 @@
-﻿using HotBooking.Models;
+﻿using HotBooking.Domain.Entities;
+using HotBooking.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,9 @@ namespace HotBooking.Controllers
     
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
-        public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signinMgr)
+        private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
+        public AccountController(UserManager<User> userMgr, SignInManager<User> signinMgr)
         {
             userManager = userMgr;
             signInManager = signinMgr;
@@ -31,7 +32,7 @@ namespace HotBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = new IdentityUser { Email = model.Email, UserName = model.Email};
+                User user = new User { Email = model.Email, UserName = model.Email};
                 // добавляем пользователя
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -63,7 +64,7 @@ namespace HotBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await userManager.FindByNameAsync(model.UserName);
+                User user = await userManager.FindByNameAsync(model.UserName);
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();

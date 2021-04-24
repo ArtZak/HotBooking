@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HotBooking.Domain
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<User>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -47,7 +47,7 @@ namespace HotBooking.Domain
             });
 
             //Adding new user to database.
-            modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
+            modelBuilder.Entity<User>().HasData(new User
             {
                 Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                 UserName = "admin",
@@ -55,7 +55,7 @@ namespace HotBooking.Domain
                 Email = "my@email.com",
                 NormalizedEmail = "MY@EMAIL.COM",
                 EmailConfirmed = true,
-                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "superpassword"),
+                PasswordHash = new PasswordHasher<User>().HashPassword(null, "superpassword"),
                 SecurityStamp = string.Empty
             });
 

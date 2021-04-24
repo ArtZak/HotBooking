@@ -1,4 +1,5 @@
 using HotBooking.Domain;
+using HotBooking.Domain.Entities;
 using HotBooking.Domain.Repositories.Abstract;
 using HotBooking.Domain.Repositories.EntityFramwork;
 using HotBooking.Service;
@@ -51,7 +52,7 @@ namespace HotBooking
                       .UseSqlServer(Config.ConnectionString));
 
             //Setting up the identity system
-            services.AddIdentity<IdentityUser, IdentityRole>(opts =>
+            services.AddIdentity<User, IdentityRole>(opts =>
             {
                 opts.User.RequireUniqueEmail = true;
                 opts.Password.RequiredLength = 6;

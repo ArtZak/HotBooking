@@ -1,0 +1,114 @@
+﻿@using HotBooking.Domain.Entities
+@model Review
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Booking Form HTML Template</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="~/css/bootstrap.min.css" />
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/css/reserve.css" />
+
+</head>
+
+<body>
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="booking-cta">
+                            <h1>Make your reservation</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-1">
+                        <div class="booking-form">
+                            <form asp-controller="Review" asp-action="SendReview" method="post">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" value="@ViewBag.User.UserName" disabled>
+                                        <span class="form-label">Name</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="email" value="@ViewBag.User.Email" disabled>
+                                        <span class="form-label">Email</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" value="@ViewBag.Hotel.Title" disabled>
+                                        <span class="form-label">Hotel</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Rate</span>
+                                        <input asp-for="Rating" class="form-control" type="number" min="0" max="10" style="margin-bottom: 35px;"/>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" oninput="auto_grow(this)" asp-for="Text"></textarea>
+                                        <span class="form-label" style="white-space: nowrap; margin-top: -15px;">Give your feedback</span>
+                                    </div>
+                                </div>
+                                <input type="text" asp-for="UserId" value="@ViewBag.User.Id" hidden />
+                                <input type="text" asp-for="HotelId" value="@ViewBag.Hotel.Id" hidden />
+                                <div class="form-btn">
+                                    <button class="submit-btn">Send Review</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script>
+		$('.form-control').each(function () {
+			floatedLabel($(this));
+		});
+
+		$('.form-control').on('input', function () {
+			floatedLabel($(this));
+		});
+
+		function floatedLabel(input) {
+			var $field = input.closest('.form-group');
+			if (input.val()) {
+				$field.addClass('input-not-empty');
+			} else {
+				$field.removeClass('input-not-empty');
+			}
+        }
+
+        function auto_grow(element) {
+            element.style.height = "5px";
+            element.style.height = (element.scrollHeight) + "px";
+        }
+    </script>
+
+</body>
+
+</html>
