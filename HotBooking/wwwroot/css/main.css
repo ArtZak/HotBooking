@@ -667,6 +667,19 @@ button {
     margin-bottom: 40px;
 }
 
+.carousel-item {
+    border: 1px solid black;
+    background: #EEEEEE;
+    font-size: 23px;
+    padding: 100px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: grab;
+    position: relative;
+    height: 230px;
+    overflow-wrap: break-word;
+}
+
 .review__inner {
     display: flex;
     align-items: center;

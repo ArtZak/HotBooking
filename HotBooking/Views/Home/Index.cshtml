@@ -149,25 +149,42 @@
 
                 <article class="article">
                     <div class="article__title title">Latest reviews</div>
-                    <div class="article__review review">
-                        <button> < </button>
-                        <div class="review__inner">
-                            <img src="images/icons/maleIcon.jpg" alt="" class="review__avatar">
-                            <div class="review__comment">
-                                <div class="title_2">
-                                    <p>John Shelby</p>
-                                </div>
-                                <div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id similique neque eligendi accusantium fuga. Rerum officiis quaerat molestias pariatur reiciendis eos eius in tempora repudiandae? Ut doloremque provident minus officia. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus, doloremque dignissimos beatae ducimus quam pariatur voluptate saepe porro vel quidem neque molestias, voluptatem, eius sit. Sint doloremque possimus recusandae libero.</p>
+                    <div id="js-carousel-1" class="article__review review owl-carousel">
+                        @foreach (var review in Model.Reviews.GetAll())
+                        {
+                            <div class="review__inner">
+                                @{
+                                    string path;
+                                    User currUser = Model.UserManager.FindByIdAsync(review.UserId.ToString()).Result;
+                                    if (currUser.Avatar != null && currUser.Avatar != "")
+                                    {
+                                        path = currUser.Avatar;
+                                    }
+                                    else
+                                    {
+                                        path = "images/icons/maleIcon.jpg";
+                                    }
+                                }
+                                <img src="@path" alt="" class="review__avatar">
+                                <div class="review__comment">
+                                    <div class="title_2">
+                                        <p>@currUser.UserName</p>
+                                    </div>
+                                    <div>
+                                        <p>@review.Text</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <button> > </button>
+                        }
                     </div>
                 </article>
-
             </div>
         </div>
     </div>
+
+    <script>
+        $('#js-carousel-1').owlCarousel({
+            items: 1,
+        });
+    </script>
 </body>
