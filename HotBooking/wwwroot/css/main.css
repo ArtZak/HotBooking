@@ -936,6 +936,11 @@ button {
 @media (max-width: 767px) {
     .container {
         max-width: none;
+        padding: 0px 10px;
+    }
+
+    .poster{
+        height: 720px;
     }
 
     .article__text-block {
@@ -1058,7 +1063,23 @@ button {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
+    .poster {
+        height: 750px;
+    }
+
+    .poster__form {
+        padding: 10px;
+    }
+
+        .poster__form input {
+            padding: 7px 8px;
+        }
+
+    .article__row {
+        justify-content: space-around;
+    }
+
     .article__text-block {
         flex-basis: 400px;
     }
@@ -1074,7 +1095,36 @@ button {
     .polaroid-carousel_1 {
         display: block !important;
     }
-}
+
+    .menu__row {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .card__form {
+        display: none;
+        width: 0px;
+        height: 0px ;
+    }
+
+    .article__card:hover .card__row {
+        opacity: 100%;
+        transition: .5s;
+    }
+
+    .article__card:hover .card__name {
+        visibility: visible;
+    }
+
+    .article__card:hover .card__price {
+        visibility: visible;
+    }
+
+    .article__card:hover .card__form {
+        display: none;
+    }
+}   
 
 /* Register page */
 
