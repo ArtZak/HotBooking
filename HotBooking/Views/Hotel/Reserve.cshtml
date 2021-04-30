@@ -64,14 +64,14 @@
                                     <div class="col-md-3 col-sm-6">
                                         <div class="form-group">
                                             <span class="form-label">Rooms</span>
-                                            <input class="form-control" type="number" value="@ViewBag.Count" disabled />
+                                            <input name="roomsCount" class="form-control" type="number" value="@ViewBag.Count" />
                                             <span class="select-arrow"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-6">
                                         <div class="form-group">
                                             <span class="form-label">Guests</span>
-                                            <input class="form-control" type="number" value="@ViewBag.Guests" disabled />
+                                            <input name="guests" class="form-control" type="number" value="@ViewBag.Guests" />
                                             <span class="select-arrow"></span>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                                                     day = "0" + Model.StartDate.Day.ToString();
                                                 }
                                             }
-                                            <input class="form-control" type="date" value="@Model.StartDate.Year-@month-@day" disabled />
+                                            <input asp-for="StartDate" class="form-control" type="date" value="@Model.StartDate.Year-@month-@day" />
                                             <span class="form-label">Check In</span>
                                         </div>
                                     </div>
@@ -125,16 +125,16 @@
                                                     dDay = "0" + Model.EndDate.Day.ToString();
                                                 }
                                             }
-                                            <input class="form-control" type="date" value="@Model.EndDate.Year-@dMonth-@dDay" disabled />
+                                            <input asp-for="EndDate" class="form-control" type="date" value="@Model.EndDate.Year-@dMonth-@dDay" />
                                             <span class="form-label">Check Out</span>
                                         </div>
                                     </div>
                                 </div>
-                                <input asp-for="StartDate" type="date" value="@Model.StartDate.Year-@month-@day" hidden />
-                                <input asp-for="EndDate" type="date" value="@Model.EndDate.Year-@dMonth-@dDay" hidden />
                                 <input asp-for="RoomId" value="@Model.RoomId" hidden />
+                                @*<input asp-for="StartDate" type="date" value="@Model.StartDate.Year-@month-@day" hidden />
+                                <input asp-for="EndDate" type="date" value="@Model.EndDate.Year-@dMonth-@dDay" hidden />     
                                 <input name="roomsCount" type="number" value="@ViewBag.Count" hidden />
-                                <input name="guests" type="number" value="@ViewBag.Guests" hidden />
+                                <input name="guests" type="number" value="@ViewBag.Guests" hidden />*@
                                 <div class="form-btn">
                                     <button class="submit-btn">Book Now</button>
                                 </div>

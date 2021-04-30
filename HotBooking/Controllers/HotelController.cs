@@ -56,6 +56,15 @@ namespace HotBooking.Controllers
 
         public IActionResult CompleteBooking(BookedDate model, int roomsCount, int guests)
         {
+            var currRoom = dataManager.Rooms.GetById(model.RoomId);
+            if (!(currRoom.Count - dataManager.BookedDates.GetAll().Count(d => d.RoomId == model.RoomId && (d.StartDate <= model.StartDate && d.EndDate >= model.StartDate || d.StartDate <= model.EndDate && d.EndDate >= model.EndDate)) >= roomsCount) ||
+                model.Email == null || model.UserName == null || model.Phone == null)
+            {
+                ViewBag.Count = roomsCount;
+                ViewBag.Guests = guests;
+                return RedirectToAction("Reserve", "Hotel", new { roomsCount = roomsCount, roomId = currRoom.Id, arrival = model.StartDate, departure = model.EndDate, guests = guests});
+            }
+
             List<BookedDate> models = new List<BookedDate>();
 
             for (int i = 0; i < roomsCount; i++)

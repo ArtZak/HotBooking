@@ -22,9 +22,15 @@ namespace HotBooking.Controllers
             return View(dataManager);
         }
 
-        public IActionResult Contacts()
+        public IActionResult Country(Guid countryId)
         {
-            return View(dataManager.TextFields.GetTextFieldByCodeWord("PageContacts"));
+            var country = dataManager.Countries.GetById(countryId);
+            return View(country);
+        }
+
+        public IActionResult ContactUs()
+        {
+            return View();
         }
     }
 }

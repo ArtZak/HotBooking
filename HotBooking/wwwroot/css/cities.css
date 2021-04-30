@@ -1,11 +1,94 @@
-.poster{
-    height: 378px;
+.poster {
+    height: 700px;
 }
 
-.article{
-    justify-content: center;
-    display: grid;
-    grid-template: 90px 1fr 1fr / repeat(4, minmax(180px, 231px));
-    grid-template-areas: "title title title title"; 
-    gap: 30px;  
+.article__row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.article__gradient{
+    margin-right: 20px;
+}
+
+.article {
+    margin-bottom: 40px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.article__title {
+    text-align: left;
+    color: rgb(85, 84, 84);
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.simple-info {
+    border: gray solid 1px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.simple-info__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 34px;
+}
+
+.hotel-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 360px;
+    border: gray solid 1px;
+    height: 550px;
+}
+
+    .hotel-card img {
+        width: 100%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        height: 220px;
+    }
+
+.hotel-card__title {
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0px 10px 0px 10px;
+}
+
+.hotel-card__subtitle {
+    color: gray;
+    font-size: 16px;
+    margin: 0px 10px 10px 10px;
+}
+
+.hotel-card__review-block {
+    display: flex;
+    align-items: center;
+    margin: 0px 10px 10px 10px;
+}
+
+.hotel-card__rating {
+    color: white;
+    margin-right: 10px;
+    font-weight: 700;
+    background-color: rgb(46, 46, 136);
+    padding: 5px;
+    border-radius: 5px 5px 5px 0px;
+}
+
+.hotel-card__status {
+    margin-right: 10px;
+}
+
+.hotel-card__info {
+    margin: 0px 10px 10px 10px;
+}
+
+.hotel-card button {
+    width: 95%;
+    padding: 10px 20px;
+    margin: 0px 10px 10px 10px;
 }

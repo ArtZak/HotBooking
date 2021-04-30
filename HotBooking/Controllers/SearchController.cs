@@ -96,7 +96,7 @@ namespace HotBooking.Controllers
                             hotels.Add(new KeyValuePair<Hotel, bool>(hotel, true));
                         }
                     }
-                    ViewBag.DestinationName = hotels[0].Key.City.Title;
+                    ViewBag.DestinationName = city.Title;
                 }
             }
 

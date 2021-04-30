@@ -2,13 +2,15 @@
 @using HotBooking.Domain.Entities
 @model Country
 
-<div class="article__polaroid polaroid">
-    <div class="polaroid__info">
-        <div class="polaroid__color"></div>
-        <p class="polaroid__text">@Model.Subtitle</p>
+<a href="~/Home/Country?countryId=@Model.Id" class="polaroid__link">
+    <div class="article__polaroid polaroid">
+        <div class="polaroid__info">
+            <div class="polaroid__color"></div>
+            <p class="polaroid__text">@Model.Subtitle</p>
+        </div>
+        <img src="@Model.TitleImagePath" alt="">
+        <div class="title_2">
+            <p>@Model.Title</p>
+        </div>
     </div>
-    <img src="@Model.TitleImagePath" alt="">
-    <div class="title_2">
-        <p>@Model.Title</p>
-    </div>
-</div>
+</a>

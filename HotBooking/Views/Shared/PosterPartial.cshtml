@@ -1,5 +1,6 @@
 ﻿<div class="poster">
     <img src="~/images/back.jpg" alt="" class="poster__back">
+    <span class="poster__overlayed"></span>
     <div class="container">
         <div class="poster__column">
             <div class="poster__heading">
@@ -7,7 +8,7 @@
                 <p>In a few seconds!!!</p>
             </div>
             <div class="poster__form-block">
-                @await Html.PartialAsync("SearchForm");
+                @await Html.PartialAsync("SearchForm")
             </div>
         </div>
     </div>

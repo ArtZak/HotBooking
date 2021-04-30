@@ -83,8 +83,15 @@
                         <hr>
                         <article>
                             <div class="gallery">
-                                <div class="gallery__big">
-                                    <img src="~/@Model.TitleImagePath" alt="">
+                                <div class="gallery__big cssbox">
+                                    <a id="image1" href="#image1">
+                                        <img class="cssbox_tumb" src="~/@Model.TitleImagePath" alt="">
+                                        <span class="cssbox_full">
+                                            <img src="~/@Model.TitleImagePath">
+                                        </span>
+                                    </a>
+                                    <a class="cssbox_close" href="#void"></a>
+                                    <a class="cssbox_next" href="#image2">&gt;</a>
                                 </div>
                                 <div class="gallery__column">
                                     @{
@@ -99,8 +106,25 @@
                                             else
                                             {
                                                 path = rooms[rooms.Count % i].TitleImagePath;
-                                            }                                            
-                                            <img src="~/@path" alt="">
+                                            }
+                                            var id = $"image{i + 1}";
+                                            var href = $"#image{i + 1}";
+                                            var prHref = $"#image{i}";
+                                            var nHref = $"#image{i + 2}";
+                                            <div class="gallery__small cssbox">
+                                                <a id="@id" href="@href">
+                                                    <img class="cssbox_tumb" src="~/@path" alt="">
+                                                    <span class="cssbox_full">
+                                                        <img src="~/@path">
+                                                    </span>
+                                                </a>
+                                                <a class="cssbox_close" href="#void"></a>
+                                                <a class="cssbox_prev" href="@prHref">&lt;</a>
+                                                @if (i != 3)
+                                                {
+                                                    <a class="cssbox_next" href="@nHref">&gt;</a>
+                                                }
+                                            </div>
                                         }
                                     }
                                 </div>
@@ -128,46 +152,45 @@
                             </div>
                         </article>
                         <article>
-                            <table>
-                                <tr>
-                                    <td>Room type</td>
-                                    <td>Sleeps</td>
-                                    <td>Today's price</td>
-                                    <td>Select rooms</td>
-                                    <td>Reserve</td>
-                                </tr>
-                                @foreach (var item in ViewBag.Rooms)
-                                {
-                                    <tr>
-                                        <td>@item.Key.Title</td>
-                                        <td></td>
-                                        <td>AMD @item.Key.PricePerNight</td>                            
-                                        <td>
-                                            <form asp-controller="Hotel" asp-action="Reserve" method="post">
-                                                <table>
-                                                    <tr>
-                                                        <td>
+                            <div class="table-wrapper">
+                                <table class="fl-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Room type</th>
+                                            <th>Sleeps</th>
+                                            <th>Today's price</th>
+                                            <th><div class="td__row"><div>Select Rooms</div> <div>Reserve</div></div></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.Rooms)
+                                        {
+                                            <tr>
+                                                <td>@item.Key.Title</td>
+                                                <td></td>
+                                                <td>AMD @item.Key.PricePerNight</td>
+                                                <td>
+                                                    <form asp-controller="Hotel" asp-action="Reserve" method="post">
+                                                        <div class="td__row">
                                                             <select name="roomsCount" id="">
                                                                 @for (int i = 1; i <= item.Value; i++)
                                                                 {
                                                                     <option value="@i">@i (AMD @{var price = item.Key.PricePerNight * i;}@price)</option>
                                                                 }
                                                             </select>
-                                                        </td>
-                                                        <td>
                                                             <input type="text" name="roomId" value="@item.Key.Id" hidden />
                                                             <input type="text" name="arrival" value="@ViewBag.Arrival" hidden />
                                                             <input type="text" name="departure" value="@ViewBag.Departure" hidden />
                                                             <input type="text" name="guests" value="@ViewBag.Guests" hidden />
-                                                            <input type="submit" value="Reserve">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </form>                                      
-                                        </td>
-                                    </tr>
-                                }                                
-                            </table>
+                                                            <button type="submit">Reserve</button>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </article>
                     </main>
                 </div>

@@ -120,10 +120,34 @@
                     <div class="article__title title">
                         <h3>Learn more</h3>
                     </div>
-                    <div class="article__row article__row_polaroid">
-                        @for (int i = 0; i < 5; i++)
+                    <div id="js-carousel-5" class="article__row article__row_polaroid owl-carousel polaroid-carousel_5">
+                        @foreach (var country in favoriteCountries)
                         {
-                            @await Html.PartialAsync("PolaroidPartial", favoriteCountries[i]);
+                            @await Html.PartialAsync("PolaroidPartial", country);
+                        }
+                    </div>
+                    <div id="js-carousel-4" class="article__row article__row_polaroid owl-carousel polaroid-carousel_4">
+                        @foreach (var country in favoriteCountries)
+                        {
+                            @await Html.PartialAsync("PolaroidPartial", country);
+                        }
+                    </div>
+                    <div id="js-carousel-3" class="article__row article__row_polaroid owl-carousel polaroid-carousel_3">
+                        @foreach (var country in favoriteCountries)
+                        {
+                            @await Html.PartialAsync("PolaroidPartial", country);
+                        }
+                    </div>
+                    <div id="js-carousel-2" class="article__row article__row_polaroid owl-carousel polaroid-carousel_2">
+                        @foreach (var country in favoriteCountries)
+                        {
+                            @await Html.PartialAsync("PolaroidPartial", country);
+                        }
+                    </div>
+                    <div id="js-carousel-1" class="article__row article__row_polaroid owl-carousel polaroid-carousel_1">
+                        @foreach (var country in favoriteCountries)
+                        {
+                            @await Html.PartialAsync("PolaroidPartial", country);
                         }
                     </div>
                 </article>
@@ -149,7 +173,7 @@
 
                 <article class="article">
                     <div class="article__title title">Latest reviews</div>
-                    <div id="js-carousel-1" class="article__review review owl-carousel">
+                    <div id="js-carousel-review" class="article__review review owl-carousel">
                         @foreach (var review in Model.Reviews.GetAll())
                         {
                             <div class="review__inner">
@@ -183,8 +207,34 @@
     </div>
 
     <script>
+        $(document).ready(function () {
+            $('.header__burger').click(function (event) {
+                $('.header__burger,.header__menu').toggleClass('active');
+            });
+        });
+
+        $('#js-carousel-review').owlCarousel({
+            items: 1,
+        });
+
         $('#js-carousel-1').owlCarousel({
             items: 1,
+        });
+
+        $('#js-carousel-5').owlCarousel({
+            items: 5,
+        });
+
+        $('#js-carousel-4').owlCarousel({
+            items: 4,
+        });
+
+        $('#js-carousel-3').owlCarousel({
+            items: 3,
+        });
+
+        $('#js-carousel-2').owlCarousel({
+            items: 2,
         });
     </script>
 </body>

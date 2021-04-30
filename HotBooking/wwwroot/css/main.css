@@ -80,10 +80,6 @@ select {
     flex-direction: column;
 }
 
-.header__menu {
-    display: none;
-}
-
 .container {
     padding: 0 20px;
     max-width: 1400px;
@@ -122,6 +118,7 @@ button {
 /* Header */
 
 .header {
+    position: relative;
     background-color: teal;
     min-height: 80px;
 }
@@ -131,6 +128,13 @@ button {
     justify-content: space-between;
     align-items: center;
     min-height: 80px;
+}
+
+
+.header__menu {
+    position: fixed;
+    top: -200px;
+    left: 0;
 }
 
 /* Header Logo */
@@ -237,6 +241,16 @@ button {
     background-size: cover;
 }
 
+.poster__overlayed {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.055) 0%, rgba(0, 0, 0, 0.801) 40%, rgba(0, 0, 0, 0.055) 100%);
+}
+
 .poster__back {
     position: absolute;
     width: 100%;
@@ -280,7 +294,7 @@ button {
     }
 
     .poster__form .submit {
-        background: #f8ba0f;
+        background: teal;
         color: #fff;
         font-size: 17px;
         margin-top: 23px;
@@ -309,7 +323,7 @@ button {
     }
 
 .submit:hover {
-    background-color: #ce9906;
+    background-color: #014b4b;
 }
 
 .form__row {
@@ -472,13 +486,19 @@ button {
     background-color: transparent;
     display: none;
     padding: 5px;
-    max-width: 250px;
-    margin-right: -250px;
+    max-width: 330px;
+    margin-right: -330px;
     z-index: 100;
 }
 
     .card__form button {
+        flex-grow: 1;
         margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .card__form input {
+        padding: 8px 12px;
     }
 
 /* Image inner */
@@ -571,11 +591,31 @@ button {
 
 /* Polaroid */
 
+.polaroid__link{
+    text-decoration: none;
+}
+
 .polaroid {
     max-width: 250px;
     height: 210px;
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 20px 20px rgba(0,0,0,.15);
+}
+
+.polaroid-carousel_4 {
+    display: none!important;
+}
+
+.polaroid-carousel_3 {
+    display: none !important;
+}
+
+.polaroid-carousel_2 {
+    display: none !important;
+}
+
+.polaroid-carousel_1 {
+    display: none !important;
 }
 
 .article__polaroid {
@@ -583,17 +623,22 @@ button {
     margin-left: 5px;
 }
 
-.polaroid:hover .polaroid__color {
-    height: 168px;
+.polaroid:hover {
+    border-radius: 0% 0% 50% 50% / 0% 0% 5% 5%;
+    box-shadow: 10px 10px rgba(0,0,0,.25);
 }
 
-.polaroid:hover .polaroid__text {
-    margin-top: -50%;
-}
+    .polaroid:hover .polaroid__color {
+        height: 168px;
+    }
 
-.polaroid:hover .polaroid__info {
-    overflow: visible;
-}
+    .polaroid:hover .polaroid__text {
+        margin-top: -50%;
+    }
+
+    .polaroid:hover .polaroid__info {
+        overflow: visible;
+    }
 
 .polaroid img {
     width: 100%;
@@ -601,6 +646,7 @@ button {
 }
 
 .polaroid .title_2 {
+    color: black;
     text-align: center;
 }
 
@@ -624,6 +670,59 @@ button {
 .polaroid__text {
     margin-top: -30px;
 }
+
+/* Gradient */
+
+.gradient {
+    flex-basis: 250px;
+    position: relative;
+    padding: 20px;
+    display: grid;
+    align-items: flex-end;
+    margin: 0px;
+    height: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+
+    .gradient img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+.overlayed {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0.055) 50%)
+}
+
+.gradient:hover .overlayed {
+    background-image: linear-gradient(to top, rgb(0, 0, 0) 0%, rgba(255, 255, 255, 0.055) 100%);
+}
+
+.gradient__info {
+    z-index: 2;
+}
+
+.gradient__name {
+    color: #fff;
+    font-family: Monserrat;
+    font-size: 20px;
+}
+
+.gradient__count {
+    color: rgb(163, 163, 161);
+    font-size: 15px;
+    font-family: Monserrat;
+}
+
 
 /* Text block */
 
@@ -666,6 +765,16 @@ button {
     padding: 10px;
     margin-bottom: 40px;
 }
+
+    .review .title_2 {
+        background: #ddd;
+        border: 1px solid #222;
+        box-shadow: 3px 3px 0 #222;
+        transform: rotate(0deg);
+        margin-bottom: 15px;
+        padding: 0 5px;
+        width: fit-content;
+    }
 
 .carousel-item {
     border: 1px solid black;
@@ -766,7 +875,6 @@ button {
             opacity: 60%;
         }
 
-
 @media (max-width: 1200px) {
     .container {
         max-width: 970px;
@@ -777,6 +885,26 @@ button {
         margin: 20px 5px;
         border-radius: 5px;
     }
+
+    .polaroid-carousel_5{
+        display: none!important;
+    }
+
+    .polaroid-carousel_4{
+        display: block!important;
+    }
+
+    .polaroid-carousel_3 {
+        display: none !important;
+    }
+
+    .polaroid-carousel_2 {
+        display: none !important;
+    }
+
+    .polaroid-carousel_1 {
+        display: none !important;
+    }
 }
 
 @media (max-width: 992px) {
@@ -786,6 +914,22 @@ button {
 
     .card {
         flex-basis: 330px;
+    }
+
+    .polaroid-carousel_4 {
+        display: none !important;
+    }
+
+    .polaroid-carousel_3 {
+        display: block !important;
+    }
+
+    .polaroid-carousel_2 {
+        display: none !important;
+    }
+
+    .polaroid-carousel_1 {
+        display: none !important;
     }
 }
 
@@ -799,11 +943,27 @@ button {
         flex-basis: 270px;
     }
 
+    .header:before{
+        position: absolute;
+        content:'';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: teal;
+        z-index: 4;
+    }
+
+    .header .logo{
+        z-index: 5;
+    }
+
     .header__burger {
         display: block;
         position: relative;
         width: 30px;
         height: 20px;
+        z-index: 5;
     }
 
         .header__burger:before,
@@ -814,6 +974,7 @@ button {
             width: 100%;
             height: 2px;
             left: 0;
+            transition: all 0.3s ease 0s;
         }
 
         .header__burger span {
@@ -823,6 +984,7 @@ button {
             height: 2px;
             left: 0;
             top: 9px;
+            transition: all 0.3s ease 0s;
         }
 
         .header__burger:before {
@@ -833,12 +995,66 @@ button {
             bottom: 0;
         }
 
+        .header__burger.active span {
+            transform: scale(0);
+        }
+
+        .header__burger.active:before{
+            transform:rotate(45deg);
+            top: 9px;
+        }
+
+        .header__burger.active:after {
+            transform: rotate(-45deg);
+            bottom: 9px;
+        }
+
+    .header__menu {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(2, 195, 195);
+        z-index: 3;
+        padding: 100px 0px 10px 10px;
+        transition: all 0.3s ease 0s;
+    }
+
+    .header__menu.active{
+        top: 0;
+    }
+
+    .header__list li{
+        margin-bottom: 10px;
+    }
+
+        .header__list li a {
+            padding: 10px 0px 10px 0px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
     .nav {
         display: none;
     }
 
     .card {
         flex-grow: 1;
+    }
+
+    .polaroid-carousel_3 {
+        display: none !important;
+    }
+
+    .polaroid-carousel_2 {
+        display: block !important;
+    }
+
+    .polaroid-carousel_1 {
+        display: none !important;
     }
 }
 
@@ -849,6 +1065,14 @@ button {
 
     .review__inner {
         flex-direction: column;
+    }
+
+    .polaroid-carousel_2 {
+        display: none !important;
+    }
+
+    .polaroid-carousel_1 {
+        display: block !important;
     }
 }
 
