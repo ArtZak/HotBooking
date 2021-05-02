@@ -185,3 +185,114 @@ main {
     white-space: nowrap;
     color: black;
 }
+
+@media (max-width: 1200px){
+    .card__row{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+        align-items: flex-start;
+    }
+
+    .card__left{
+        flex-direction: column;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        margin-right: 0px;
+    }
+
+    .card__info{
+        grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .card__desc{
+        margin-top: 10px;
+    }
+}
+
+.filter__btn{
+    display: none;
+}
+
+.aside__filter-by.active{
+    left: 0;
+}
+
+@media (max-width: 992px) {
+    .aside__form{
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .aside__filter-by {
+        z-index: 4;
+        margin-top: 0px;
+        position: fixed;
+        top: 90px;
+        bottom: 10px;
+        overflow-y: scroll;
+        left: -100%;
+        background-color: white;
+    }
+
+    .article__title{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .filter__btn{
+        display: block;
+        width: 60px;
+        height: 60px;
+        padding: 5px 5px;
+        background-color: transparent;
+        margin-top: 0px;
+    }
+
+    .filter__btn img{
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 500px){
+    .card__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto auto;
+        align-items: flex-start;
+    }
+
+    .card__image{
+        width: 100%;
+    }
+
+    .card__info {
+        grid-column-start: 1;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+
+    .review{
+        margin-bottom: 0px;
+    }
+
+    .review__digit{
+        order: 1;
+        margin-left: 0px;
+        margin-right: 10px;
+    }
+
+    .review__text{
+        order: 2;
+        align-items: flex-start;
+        margin-right: 0px;
+        margin-left: 10px;
+    }
+}

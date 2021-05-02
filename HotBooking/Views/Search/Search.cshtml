@@ -256,6 +256,9 @@
                         <article>
                             <div class="article__title">
                                 <h2>@ViewBag.DestinationName: @Model.Count(x => x.Value) properties found</h2>
+                                <button class="filter__btn">
+                                    <img src="~/images/icons/filter.webp" alt="Alternate Text" />
+                                </button>
                             </div>
                             @foreach (var hotel in Model.Where(x => x.Value))
                             {
@@ -349,4 +352,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.filter__btn').click(function (event) {
+                $('.aside__filter-by').toggleClass('active');
+            });
+        });
+    </script>
 </body>

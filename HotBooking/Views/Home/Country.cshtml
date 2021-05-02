@@ -13,7 +13,7 @@
                         <div class="article__title title">
                             <h4>Top destinations for @Model.Title city trips</h4>
                         </div>
-                        <div id="js-carousel-3" class="article__row owl-carousel">
+                        <div id="js-carousel-city-4" class="article__row owl-carousel">
                             @foreach (var city in Model.Cities)
                             {
                                 <div class="article__gradient gradient">
@@ -24,7 +24,46 @@
                                         <p class="gradient__count">@city.Hotels.Count hotels</p>
                                     </div>
                                 </div>
-                            }    
+                            }
+                        </div>
+                        <div id="js-carousel-city-3" class="article__row owl-carousel">
+                            @foreach (var city in Model.Cities)
+                            {
+                                <div class="article__gradient gradient">
+                                    <img src="~/@city.TitleImagePath" alt="">
+                                    <span class="overlayed"></span>
+                                    <div class="gradient__info">
+                                        <p class="gradient__name">@city.Title</p>
+                                        <p class="gradient__count">@city.Hotels.Count hotels</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div id="js-carousel-city-2" class="article__row owl-carousel">
+                            @foreach (var city in Model.Cities)
+                            {
+                                <div class="article__gradient gradient">
+                                    <img src="~/@city.TitleImagePath" alt="">
+                                    <span class="overlayed"></span>
+                                    <div class="gradient__info">
+                                        <p class="gradient__name">@city.Title</p>
+                                        <p class="gradient__count">@city.Hotels.Count hotels</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div id="js-carousel-city-1" class="article__row owl-carousel">
+                            @foreach (var city in Model.Cities)
+                            {
+                                <div class="article__gradient gradient">
+                                    <img src="~/@city.TitleImagePath" alt="">
+                                    <span class="overlayed"></span>
+                                    <div class="gradient__info">
+                                        <p class="gradient__name">@city.Title</p>
+                                        <p class="gradient__count">@city.Hotels.Count hotels</p>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </article>
                     <article class="article">
@@ -38,7 +77,10 @@
                         </div>
                     </article>
                     <article class="article">
-                        <div id="js-carousel-4" class="article__row owl-carousel">
+                        <div class="article__title title">
+                            <h4>Top hotel in @Model.Title</h4>
+                        </div>
+                        <div id="js-carousel-hotel-3" class="article__row owl-carousel">
                             @foreach (var city in Model.Cities)
                             {
                                 var count = 0;
@@ -55,7 +97,7 @@
                                             </div>
                                             <div class="hotel-card__review-block">
                                                 <div class="hotel-card__rating">
-                                                    @hotel.ReviewRating
+                                                    @Math.Round(hotel.ReviewRating, 1)
                                                 </div>
                                                 <div class="hotel-card__status">
                                                     @{
@@ -91,11 +133,11 @@
                                                 @hotel.Subtitle
                                             </div>
                                         </div>
-                                        
-                                        <form asp-controller="Hotel" asp-action="Hotel"  method="post">
+
+                                        <form asp-controller="Hotel" asp-action="Hotel" method="post">
                                             <input type="text" name="hotelId" value="@hotel.Id" hidden />
                                             <button>Reserve</button>
-                                        </form>                                        
+                                        </form>
                                     </div>
                                     if (count == 20)
                                     {
@@ -103,20 +145,143 @@
                                     }
                                 }
                             }
-                            
+
+                        </div>
+                        <div id="js-carousel-hotel-2" class="article__row owl-carousel">
+                            @foreach (var city in Model.Cities)
+                            {
+                                var count = 0;
+                                foreach (var hotel in city.Hotels)
+                                {
+                                    <div class="hotel-card">
+                                        <div class="hotel-card__head>">
+                                            <img src="~/@hotel.TitleImagePath" alt="">
+                                            <div class="hotel-card__title">
+                                                @hotel.Title hotel
+                                            </div>
+                                            <div class="hotel-card__subtitle">
+                                                Hotel in @hotel.City.Title
+                                            </div>
+                                            <div class="hotel-card__review-block">
+                                                <div class="hotel-card__rating">
+                                                    @Math.Round(hotel.ReviewRating, 1)
+                                                </div>
+                                                <div class="hotel-card__status">
+                                                    @{
+                                                        string str;
+                                                        if (@hotel.ReviewRating >= 9)
+                                                        {
+                                                            str = "Superb";
+                                                        }
+                                                        else if (@hotel.ReviewRating >= 8)
+                                                        {
+                                                            str = "Very Good";
+                                                        }
+                                                        else if (@hotel.ReviewRating >= 7)
+                                                        {
+                                                            str = "VGood";
+                                                        }
+                                                        else if (@hotel.ReviewRating >= 6)
+                                                        {
+                                                            str = "Pleasant";
+                                                        }
+                                                        else
+                                                        {
+                                                            str = "Bad";
+                                                        }
+                                                    }
+                                                    @str
+                                                </div>
+                                                <div class="hotel-card__reviews">
+                                                    @hotel.Reviews.Count reviews
+                                                </div>
+                                            </div>
+                                            <div class="hotel-card__info">
+                                                @hotel.Subtitle
+                                            </div>
+                                        </div>
+
+                                        <form asp-controller="Hotel" asp-action="Hotel" method="post">
+                                            <input type="text" name="hotelId" value="@hotel.Id" hidden />
+                                            <button>Reserve</button>
+                                        </form>
+                                    </div>
+                                    if (count == 20)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        </div>
+                        <div id="js-carousel-hotel-1" class="article__row owl-carousel">
+                            @foreach (var city in Model.Cities)
+                            {
+                                var count = 0;
+                                foreach (var hotel in city.Hotels)
+                                {
+                                    <div class="hotel-card">
+                                        <div class="hotel-card__head>">
+                                            <img src="~/@hotel.TitleImagePath" alt="">
+                                            <div class="hotel-card__title">
+                                                @hotel.Title hotel
+                                            </div>
+                                            <div class="hotel-card__subtitle">
+                                                Hotel in @hotel.City.Title
+                                            </div>
+                                            <div class="hotel-card__review-block">
+                                                <div class="hotel-card__rating">
+                                                    @Math.Round(hotel.ReviewRating, 1)
+                                                </div>
+                                                <div class="hotel-card__status">
+                                                    @{
+                                                        string str;
+                                                        if (@hotel.ReviewRating >= 9)
+                                                        {
+                                                            str = "Superb";
+                                                        }
+                                                        else if (@hotel.ReviewRating >= 8)
+                                                        {
+                                                            str = "Very Good";
+                                                        }
+                                                        else if (@hotel.ReviewRating >= 7)
+                                                        {
+                                                            str = "VGood";
+                                                        }
+                                                        else if (@hotel.ReviewRating >= 6)
+                                                        {
+                                                            str = "Pleasant";
+                                                        }
+                                                        else
+                                                        {
+                                                            str = "Bad";
+                                                        }
+                                                    }
+                                                    @str
+                                                </div>
+                                                <div class="hotel-card__reviews">
+                                                    @hotel.Reviews.Count reviews
+                                                </div>
+                                            </div>
+                                            <div class="hotel-card__info">
+                                                @hotel.Subtitle
+                                            </div>
+                                        </div>
+
+                                        <form asp-controller="Hotel" asp-action="Hotel" method="post">
+                                            <input type="text" name="hotelId" value="@hotel.Id" hidden />
+                                            <button>Reserve</button>
+                                        </form>
+                                    </div>
+                                    if (count == 20)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
                         </div>
                     </article>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        $('#js-carousel-3').owlCarousel({
-            items: 4,
-        });
-        $('#js-carousel-4').owlCarousel({
-            items: 3,
-        });
-    </script>
 </body>

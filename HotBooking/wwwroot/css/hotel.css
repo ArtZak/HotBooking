@@ -227,11 +227,68 @@ tbody td {
 
 /* Responsive */
 
+@media (max-width: 992px) {
+    aside{
+        display: none;
+    }
+}
+
 @media (max-width: 767px) {
-    .td__row{
-        flex-direction:column;
+    main{
+        max-width: 100%;
+        margin-left: 0px;
+    }
+
+    .content__row{
+        padding-left: 0px;
+    }
+
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        height: 800px;
+    }
+
+    .gallery__big {
+        flex-grow: 1;
+        flex-basis: 70%;
+        flex-shrink: 0;
+    }
+
+    .gallery__small {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 30%;
+        height: 100%;
+        margin-right: 10px;
+    }
+
+    .gallery__big img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .gallery__column {
+        flex-direction: row;
+        flex-grow: 1;
+        flex-basis: 40%;
+    }
+
+        .gallery__column img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .td__row {
+        flex-direction: column;
         justify-content: space-between;
         height: 100%;
+    }
+
+    .table-wrapper{
+        max-width: 100%;
     }
 
     .fl-table {
@@ -239,18 +296,10 @@ tbody td {
         width: 100%;
     }
 
-    .fl-table form{
-        height: 100%;
-    }
+        .fl-table form {
+            height: 100%;
+        }
 
-    .table-wrapper:before {
-        content: "Scroll horizontally >";
-        display: block;
-        text-align: right;
-        font-size: 11px;
-        color: white;
-        padding: 0 0 10px;
-    }
 
     .fl-table thead, .fl-table tbody, .fl-table thead th {
         display: block;
@@ -266,14 +315,16 @@ tbody td {
     }
 
     .fl-table tbody {
+        padding-bottom: 10px;
+        padding-top: 10px;
         width: auto;
         position: relative;
         overflow-x: auto;
     }
 
-    .fl-table tbody tr td:last-child{
-        height: 120px;
-    }
+        .fl-table tbody tr td:last-child {
+            height: 120px;
+        }
 
     .fl-table td, .fl-table th {
         padding: 20px .625em .625em .625em;
@@ -316,5 +367,38 @@ tbody td {
     .fl-table tbody td {
         display: block;
         text-align: center;
+    }
+}
+
+@media (max-width: 630px){
+    .gallery{
+        display: block;
+        height: auto;
+    }
+
+    .gallery__big{
+        width: 60%;
+        height: 24%;
+    }
+
+    .gallery__small{
+        width: 60%;
+        height: 24%;
+    }
+
+    .gallery__column{
+        display: block;
+    }
+}
+
+@media (max-width: 500px){
+    .gallery__big {
+        width: 90%;
+        height: 24%;
+    }
+
+    .gallery__small {
+        width: 90%;
+        height: 24%;
     }
 }

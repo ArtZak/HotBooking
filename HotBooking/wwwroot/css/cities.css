@@ -92,3 +92,77 @@
     padding: 10px 20px;
     margin: 0px 10px 10px 10px;
 }
+
+#js-carousel-city-3{
+    display: none!important;
+}
+
+#js-carousel-city-2 {
+    display: none!important;
+}
+
+#js-carousel-city-1 {
+    display: none !important;
+}
+
+#js-carousel-hotel-2 {
+    display: none!important;
+}
+
+#js-carousel-hotel-1 {
+    display: none !important;
+}
+
+@media (max-width: 1200px) {
+    #js-carousel-city-4 {
+        display: none !important;
+    }
+
+    #js-carousel-city-3 {
+        display: block !important;
+    }
+
+    #js-carousel-hotel-3 {
+        display: none !important;
+    }
+
+    #js-carousel-hotel-2 {
+        display: block !important;
+    }
+}
+
+@media (max-width: 992px){
+    #js-carousel-city-3 {
+        display: none!important;
+    }
+
+    #js-carousel-city-2{
+        display: block!important;
+    }
+
+}
+
+@media (max-width: 767px){
+    .article{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    #js-carousel-hotel-2 {
+        display: none !important;
+    }
+
+    #js-carousel-hotel-1 {
+        display: block !important;
+    }
+}
+
+@media (max-width: 500px){
+    #js-carousel-city-2 {
+        display: none !important;
+    }
+
+    #js-carousel-city-1 {
+        display: block !important;
+    }
+}
