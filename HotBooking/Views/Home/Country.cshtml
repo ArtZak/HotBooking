@@ -16,53 +16,73 @@
                         <div id="js-carousel-city-4" class="article__row owl-carousel">
                             @foreach (var city in Model.Cities)
                             {
-                                <div class="article__gradient gradient">
-                                    <img src="~/@city.TitleImagePath" alt="">
-                                    <span class="overlayed"></span>
-                                    <div class="gradient__info">
-                                        <p class="gradient__name">@city.Title</p>
-                                        <p class="gradient__count">@city.Hotels.Count hotels</p>
-                                    </div>
-                                </div>
+                                <form asp-controller="Search" asp-action="Search" method="post" class="city__form">
+                                    <input type="text" name="destination" value="@city.Title" hidden />
+                                    <button>
+                                        <div class="article__gradient gradient">
+                                            <img src="~/@city.TitleImagePath" alt="">
+                                            <span class="overlayed"></span>
+                                            <div class="gradient__info">
+                                                <p class="gradient__name">@city.Title</p>
+                                                <p class="gradient__count">@city.Hotels.Count hotels</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </form>
                             }
                         </div>
                         <div id="js-carousel-city-3" class="article__row owl-carousel">
                             @foreach (var city in Model.Cities)
                             {
-                                <div class="article__gradient gradient">
-                                    <img src="~/@city.TitleImagePath" alt="">
-                                    <span class="overlayed"></span>
-                                    <div class="gradient__info">
-                                        <p class="gradient__name">@city.Title</p>
-                                        <p class="gradient__count">@city.Hotels.Count hotels</p>
-                                    </div>
-                                </div>
+                                <form asp-controller="Search" asp-action="Search" method="post" class="city__form">
+                                    <input type="text" name="destination" value="@city.Title" hidden />
+                                    <button>
+                                        <div class="article__gradient gradient">
+                                            <img src="~/@city.TitleImagePath" alt="">
+                                            <span class="overlayed"></span>
+                                            <div class="gradient__info">
+                                                <p class="gradient__name">@city.Title</p>
+                                                <p class="gradient__count">@city.Hotels.Count hotels</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </form>
                             }
                         </div>
                         <div id="js-carousel-city-2" class="article__row owl-carousel">
                             @foreach (var city in Model.Cities)
                             {
-                                <div class="article__gradient gradient">
-                                    <img src="~/@city.TitleImagePath" alt="">
-                                    <span class="overlayed"></span>
-                                    <div class="gradient__info">
-                                        <p class="gradient__name">@city.Title</p>
-                                        <p class="gradient__count">@city.Hotels.Count hotels</p>
-                                    </div>
-                                </div>
+                                <form asp-controller="Search" asp-action="Search" method="post" class="city__form">
+                                    <input type="text" name="destination" value="@city.Title" hidden />
+                                    <button>
+                                        <div class="article__gradient gradient">
+                                            <img src="~/@city.TitleImagePath" alt="">
+                                            <span class="overlayed"></span>
+                                            <div class="gradient__info">
+                                                <p class="gradient__name">@city.Title</p>
+                                                <p class="gradient__count">@city.Hotels.Count hotels</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </form>
                             }
                         </div>
                         <div id="js-carousel-city-1" class="article__row owl-carousel">
                             @foreach (var city in Model.Cities)
                             {
-                                <div class="article__gradient gradient">
-                                    <img src="~/@city.TitleImagePath" alt="">
-                                    <span class="overlayed"></span>
-                                    <div class="gradient__info">
-                                        <p class="gradient__name">@city.Title</p>
-                                        <p class="gradient__count">@city.Hotels.Count hotels</p>
-                                    </div>
-                                </div>
+                                <form asp-controller="Search" asp-action="Search" method="post" class="city__form">
+                                    <input type="text" name="destination" value="@city.Title" hidden />
+                                    <button>
+                                        <div class="article__gradient gradient">
+                                            <img src="~/@city.TitleImagePath" alt="">
+                                            <span class="overlayed"></span>
+                                            <div class="gradient__info">
+                                                <p class="gradient__name">@city.Title</p>
+                                                <p class="gradient__count">@city.Hotels.Count hotels</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </form>
                             }
                         </div>
                     </article>

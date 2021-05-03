@@ -96,10 +96,11 @@
                                 <div class="gallery__column">
                                     @{
                                         var rooms = Model.Rooms.ToList();
+                                        bool flag = rooms.Count == 0;
                                         string path;
                                         for (int i = 1; i <= 3; i++)
                                         {
-                                            if(rooms[rooms.Count % i].TitleImagePath == "" || rooms[rooms.Count % i].TitleImagePath == null)
+                                            if(flag || rooms[rooms.Count % i].TitleImagePath == "" || rooms[rooms.Count % i].TitleImagePath == null)
                                             {
                                                 path = Model.TitleImagePath;
                                             }
