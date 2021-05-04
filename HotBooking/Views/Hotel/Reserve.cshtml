@@ -1,6 +1,10 @@
-﻿@using HotBooking.Domain.Entities
+﻿@using HotBooking
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<CommonResources> SharedLocalizer
+@using HotBooking.Domain.Entities
 @model BookedDate
-@{ 
+@{
     Layout = null;
 }
 
@@ -13,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Booking Form HTML Template</title>
+    <title></title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
@@ -33,8 +37,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="booking-cta">
-                            <h1>Make your reservation</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+                            <h1>@Localizer["Make your reservation"]</h1>
+                            <p>@Localizer["Make your reservation desc"]</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-md-offset-1">
@@ -44,13 +48,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input asp-for="UserName" class="form-control" type="text">
-                                            <span class="form-label">Name</span>
+                                            <span class="form-label">@Localizer["Name"]</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input asp-for="Email" class="form-control" type="email">
-                                            <span class="form-label">Email</span>
+                                            <span class="form-label">@Localizer["Email"]</span>
                                         </div>
                                     </div>
                                 </div>
@@ -58,19 +62,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input asp-for="Phone" class="form-control" type="tel">
-                                            <span class="form-label">Phone</span>
+                                            <span class="form-label">@Localizer["Phone"]</span>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-6">
                                         <div class="form-group">
-                                            <span class="form-label">Rooms</span>
+                                            <span class="form-label">@Localizer["Rooms"]</span>
                                             <input name="roomsCount" class="form-control" type="number" value="@ViewBag.Count" />
                                             <span class="select-arrow"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-6">
                                         <div class="form-group">
-                                            <span class="form-label">Guests</span>
+                                            <span class="form-label">@Localizer["Guests"]</span>
                                             <input name="guests" class="form-control" type="number" value="@ViewBag.Guests" />
                                             <span class="select-arrow"></span>
                                         </div>
@@ -81,7 +85,7 @@
                                         <div class="form-group">
                                             @{
                                                 string month;
-                                                string day;
+                                                    string day;
                                                 if (Model.StartDate.Month > 9)
                                                 {
                                                     month = Model.StartDate.Month.ToString();
@@ -90,17 +94,17 @@
                                                 {
                                                     month = "0" + Model.StartDate.Month.ToString();
                                                 }
-                                                if (Model.StartDate.Day > 9)
-                                                {
-                                                    day = Model.StartDate.Day.ToString();
-                                                }
-                                                else
-                                                {
-                                                    day = "0" + Model.StartDate.Day.ToString();
-                                                }
+                                            if (Model.StartDate.Day > 9)
+                                            {
+                                                day = Model.StartDate.Day.ToString();
+                                            }
+                                            else
+                                            {
+                                                day = "0" + Model.StartDate.Day.ToString();
+                                            }
                                             }
                                             <input asp-for="StartDate" class="form-control" type="date" value="@Model.StartDate.Year-@month-@day" />
-                                            <span class="form-label">Check In</span>
+                                            <span class="form-label"> @Localizer["Check In"]</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -126,17 +130,17 @@
                                                 }
                                             }
                                             <input asp-for="EndDate" class="form-control" type="date" value="@Model.EndDate.Year-@dMonth-@dDay" />
-                                            <span class="form-label">Check Out</span>
+                                            <span class="form-label"> @Localizer["Check Out"]</span>
                                         </div>
                                     </div>
                                 </div>
                                 <input asp-for="RoomId" value="@Model.RoomId" hidden />
                                 @*<input asp-for="StartDate" type="date" value="@Model.StartDate.Year-@month-@day" hidden />
-                                <input asp-for="EndDate" type="date" value="@Model.EndDate.Year-@dMonth-@dDay" hidden />     
-                                <input name="roomsCount" type="number" value="@ViewBag.Count" hidden />
-                                <input name="guests" type="number" value="@ViewBag.Guests" hidden />*@
+                                    <input asp-for="EndDate" type="date" value="@Model.EndDate.Year-@dMonth-@dDay" hidden />
+                                    <input name="roomsCount" type="number" value="@ViewBag.Count" hidden />
+                                    <input name="guests" type="number" value="@ViewBag.Guests" hidden />*@
                                 <div class="form-btn">
-                                    <button class="submit-btn">Book Now</button>
+                                    <button class="submit-btn">@Localizer["Book Now"]</button>
                                 </div>
                             </form>
                         </div>
@@ -148,22 +152,22 @@
 
     <script src="~/js/jquery.min.js"></script>
     <script>
-		$('.form-control').each(function () {
-			floatedLabel($(this));
-		});
+        $('.form-control').each(function () {
+            floatedLabel($(this));
+        });
 
-		$('.form-control').on('input', function () {
-			floatedLabel($(this));
-		});
+        $('.form-control').on('input', function () {
+            floatedLabel($(this));
+        });
 
-		function floatedLabel(input) {
-			var $field = input.closest('.form-group');
-			if (input.val()) {
-				$field.addClass('input-not-empty');
-			} else {
-				$field.removeClass('input-not-empty');
-			}
-		}
+        function floatedLabel(input) {
+            var $field = input.closest('.form-group');
+            if (input.val()) {
+                $field.addClass('input-not-empty');
+            } else {
+                $field.removeClass('input-not-empty');
+            }
+        }
     </script>
 
 </body>

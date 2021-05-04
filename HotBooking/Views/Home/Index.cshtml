@@ -1,7 +1,11 @@
-﻿@using HotBooking.Domain
+﻿@using HotBooking
+@using HotBooking.Domain
 @using HotBooking.Domain.Entities
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<CommonResources> SharedLocalizer
 @model DataManager
-@{ 
+@{
     var favoriteCities = new List<City>();
     var armenianCities = new List<City>();
     var favoriteCountries = new List<Country>();
@@ -13,7 +17,7 @@
         {
             favoriteCities.Add(item);
         }
-        if(country.Title == "Armenia")
+        if (country.Title == "Armenia")
         {
             armenianCities.Add(item);
         }
@@ -31,13 +35,14 @@
     <div class="content">
         <div class="container">
             <div class="content__column">
+                @await Html.PartialAsync("SelectLanguagePartial")
                 <article class="article">
                     <div class="article__title title">
-                        <h3>Online hotel reservation system HotBooking</h3>
+                        <h3>@Localizer["HotBooking title"]</h3>
                     </div>
                     <div class="article__subtitle">
                         <img src="~/images/bookingImage.jpg" alt="">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur accusantium nesciunt iure? Officia quo hic laboriosam. In harum aperiam quia officiis, maiores et dicta obcaecati numquam beatae ipsam, quo porro? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, recusandae ipsum ratione eligendi veritatis soluta placeat iure architecto optio? Repellat ipsa, magnam expedita necessitatibus illo quae laborum corrupti reiciendis incidunt! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam cumque voluptate cum assumenda corrupti, magni dolore, ex veritatis delectus quos, exercitationem amet enim nostrum. Alias odit dignissimos ea iusto veritatis. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis architecto aliquam quos facilis accusamus doloribus aut necessitatibus voluptatem libero corrupti quas nesciunt quo iure, magni, deleniti omnis cupiditate vel! Consequatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque magnam aliquam repellat unde vero odit quos sint quas consequuntur corrupti veritatis alias distinctio expedita dolorem earum corporis quidem, quaerat cumque.</p>
+                        <p>@Localizer["HotBooking desc"]</p>
                     </div>
                 </article>
 
@@ -45,50 +50,50 @@
                     <div class="article__row">
                         <div class="article__text-block article__text-block_piggy">
                             <div class="article__title_2 title_2">
-                                <p>Low prices</p>
-                            </div>
+                                <p>@Localizer["Low prices"]</p>
+                             </div>
                             <div class="text-block__description">
-                                <p>Our prices are under close control as we work with thousands of hotels and dozens of providers directly. This also means that we always have great offers for most destinations.</p>
+                                <p>@Localizer["Low prices desc"]</p>
                             </div>
                         </div>
                         <div class="article__text-block article__text-block_key">
                             <div class="article__title_2 title_2">
-                                <p>Hotels Worldwide</p>
-                            </div>
+                                <p>@Localizer["Hotels Worldwide"]</p>
+                             </div>
                             <div class="text-block__description">
-                                <p>We have over 1,300,000 properties around the world. This includes hotels, hostels, apartments, villas, and even campgrounds. Find suitable accommodation at any time of the year.</p>
+                                <p>@Localizer["Hotels Worldwide desc"]</p>
                             </div>
                         </div>
                         <div class="article__text-block article__text-block_bars">
                             <div class="article__title_2 title_2">
-                                <p>Flexible payment options</p>
-                            </div>
+                                <p>@Localizer["Flexible payment options"]</p>
+                             </div>
                             <div class="text-block__description">
-                                <p>You can choose a payment method. We accept all major credit cards for online payment. You can also pay upon arrival at the hotel.</p>
+                                <p>@Localizer["Flexible payment options desc"]</p>
                             </div>
                         </div>
                         <div class="article__text-block article__text-block_phone">
                             <div class="article__title_2 title_2">
-                                <p>24/7 Dedicated Customer Care Team</p>
-                            </div>
+                                <p>@Localizer["24/7 Dedicated Customer Care Team"]</p>
+                             </div>
                             <div class="text-block__description">
-                                <p>Our customer care team is available 24/7. Our managers can help you with choosing a hotel and making a reservation, or if you need any help when traveling, they will find a solution to your problem as soon as possible.</p>
+                                <p>@Localizer["24/7 Dedicated Customer Care Team desc"]</p>
                             </div>
                         </div>
                         <div class="article__text-block article__text-block_message">
                             <div class="article__title_2 title_2">
-                                <p>Reliable Reviews</p>
-                            </div>
+                                <p>@Localizer["Reliable Reviews"]</p>
+                             </div>
                             <div class="text-block__description">
-                                <p>We collect and publish our clients' reviews, as well as reviews from TripAdvisor, to provide you with additional information about the hotel.</p>
+                                <p>@Localizer["Reliable Reviews desc"]</p>
                             </div>
                         </div>
                         <div class="article__text-block article__text-block_mobile">
                             <div class="article__title_2 title_2">
-                                <p>Free App</p>
+                                <p>@Localizer["Free App"]</p>
                             </div>
                             <div class="description">
-                                <p>The most important thing about our app is that it shows secret offers. Plus, it is extremely handy—book hotels on the subway, at work, or even at the airport.</p>
+                                <p>@Localizer["Free App desc"]</p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +104,7 @@
 
                 <article class="article">
                     <div class="article__title title">
-                        <h3>Favorite cities</h3>
+                        <h3>@Localizer["Favorite cities"]</h3>
                     </div>
                     <div class="article__row">
                         @for (int i = 0; i < 6; i++)
@@ -118,7 +123,7 @@
 
                 <article class="article">
                     <div class="article__title title">
-                        <h3>Learn more</h3>
+                        <h3>@Localizer["Learn more"]</h3>
                     </div>
                     <div id="js-carousel-polaroid-5" class="article__row article__row_polaroid owl-carousel polaroid-carousel_5">
                         @foreach (var country in favoriteCountries)
@@ -154,7 +159,7 @@
 
                 <article class="article">
                     <div class="article__title title">
-                        <h3>Explore Armenia</h3>
+                        <h3>@Localizer["Explore Armenia"]</h3>
                     </div>
                     <div class="article__row">
                         @for (int i = 0; i < 6; i++)
@@ -172,7 +177,9 @@
                 </article>
 
                 <article class="article">
-                    <div class="article__title title">Latest reviews</div>
+                    <div class="article__title title">
+                        <h3>@Localizer["Latest reviews"]</h3>
+                    </div>
                     <div id="js-carousel-review" class="article__review review owl-carousel">
                         @foreach (var review in Model.Reviews.GetAll())
                         {

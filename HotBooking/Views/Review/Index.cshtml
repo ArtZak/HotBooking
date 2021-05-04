@@ -1,6 +1,10 @@
-﻿@using HotBooking.Domain.Entities
+﻿@using HotBooking
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<CommonResources> SharedLocalizer
+@using HotBooking.Domain.Entities
 @model Review
-@{ 
+@{
     Layout = null;
 }
 
@@ -13,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Booking Form HTML Template</title>
+    <title></title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
@@ -33,8 +37,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="booking-cta">
-                            <h1>Make your reservation</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+                            <h1>@Localizer["Give Your feedBack"]</h1>
+                            <p>@Localizer["Give Your FeedBack desc"]</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-md-offset-1">
@@ -43,38 +47,38 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input class="form-control" type="text" value="@ViewBag.User.UserName" disabled>
-                                        <span class="form-label">Name</span>
+                                        <span class="form-label">@Localizer["Name"]</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input class="form-control" type="email" value="@ViewBag.User.Email" disabled>
-                                        <span class="form-label">Email</span>
+                                        <span class="form-label">@Localizer["Email"]</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input class="form-control" type="text" value="@ViewBag.Hotel.Title" disabled>
-                                        <span class="form-label">Hotel</span>
+                                        <span class="form-label">@Localizer["Hotel"]</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <span class="form-label">Rate</span>
-                                        <input asp-for="Rating" class="form-control" type="number" min="0" max="10" style="margin-bottom: 35px;"/>
+                                        <span class="form-label">@Localizer["Rate"]</span>
+                                        <input asp-for="Rating" class="form-control" type="number" min="0" max="10" style="margin-bottom: 35px;" />
                                         <span class="select-arrow"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <textarea class="form-control" rows="5" oninput="auto_grow(this)" asp-for="Text"></textarea>
-                                        <span class="form-label" style="white-space: nowrap; margin-top: -15px;">Give your feedback</span>
+                                        <span class="form-label" style="white-space: nowrap; margin-top: -15px;">@Localizer["Give Your feedBack"]</span>
                                     </div>
                                 </div>
                                 <input type="text" asp-for="UserId" value="@ViewBag.User.Id" hidden />
                                 <input type="text" asp-for="HotelId" value="@ViewBag.Hotel.Id" hidden />
                                 <div class="form-btn">
-                                    <button class="submit-btn">Send Review</button>
+                                    <button class="submit-btn">@Localizer["Send Review"]</button>
                                 </div>
                             </form>
                         </div>
@@ -86,21 +90,21 @@
 
     <script src="~/js/jquery.min.js"></script>
     <script>
-		$('.form-control').each(function () {
-			floatedLabel($(this));
-		});
+        $('.form-control').each(function () {
+            floatedLabel($(this));
+        });
 
-		$('.form-control').on('input', function () {
-			floatedLabel($(this));
-		});
+        $('.form-control').on('input', function () {
+            floatedLabel($(this));
+        });
 
-		function floatedLabel(input) {
-			var $field = input.closest('.form-group');
-			if (input.val()) {
-				$field.addClass('input-not-empty');
-			} else {
-				$field.removeClass('input-not-empty');
-			}
+        function floatedLabel(input) {
+            var $field = input.closest('.form-group');
+            if (input.val()) {
+                $field.addClass('input-not-empty');
+            } else {
+                $field.removeClass('input-not-empty');
+            }
         }
 
         function auto_grow(element) {

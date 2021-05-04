@@ -1,5 +1,9 @@
-﻿@model RegisterViewModel
-@{ 
+﻿@using HotBooking
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<CommonResources> SharedLocalizer
+@model RegisterViewModel
+@{
     Layout = "_LayoutWithoutPoster";
 }
 <!DOCTYPE html>
@@ -8,40 +12,40 @@
     <title></title>
 </head>
 <body>
-    <div class="wrapper">        
+    <div class="wrapper">
         <div class="content">
             <div class="container container_reg">
                 <div class="content__column">
                     <form asp-controller="Account" asp-action="Register" class="register-form">
                         <div class="register-form__title">
-                            <p class="title_2">Create your account</p>
-                            <p class="">Create an account to easily use HotBooking services.</p>
+                            <p class="title_2">@Localizer["Create your account"]</p>
+                            <p class="">@Localizer["Create your account desc"]</p>
                         </div>
-                        <input asp-for="Email" type="email" placeholder="Email">
+                        <input asp-for="Email" type="email" placeholder="@Localizer["Email"]">
                         <span asp-validation-for="Email"></span>
 
-                        <input asp-for="UserName" type="text" placeholder="User name">
+                        <input asp-for="UserName" type="text" placeholder="@Localizer["UserName"]">
                         <span asp-validation-for="UserName"></span>
 
-                        <input asp-for="Password" type="password" placeholder="Password">
+                        <input asp-for="Password" type="password" placeholder="@Localizer["Password"]">
                         <span asp-validation-for="Password"></span>
 
-                        <input asp-for="PasswordConfirm" type="password" placeholder="Confirm Password">
+                        <input asp-for="PasswordConfirm" type="password" placeholder="@Localizer["Confirm Password"]">
                         <span asp-validation-for="PasswordConfirm"></span>
 
-                        <p class="register-form__agreement">By registering a HotBooking account, I acknowledge that I have read and agree to HotBooking's <a href="">Terms of Use</a> and <a href="">Privacy Statement</a>.</p>
+                        <p class="register-form__agreement">@Localizer["By registering"]<a href="">@Localizer["Terms of Use"]</a> @Localizer["and"] <a href="">@Localizer["Privacy Statement"]</a>.</p>
                         <input type="submit" value="Agree and register" class="register-form__button">
                     </form>
-                    <p class="register-form__title_2">Or use one of these options</p>
+                    <p class="register-form__title_2">@Localizer["Or use one of these options"]</p>
                     <div class="register-form__another_options">
                         <a href=""><img src="../images/icons/facebook.png" alt=""></a>
                         <a href=""><img src="../images/icons/google.png" alt=""></a>
                         <a href=""><img src="../images/icons/apple.png" alt=""></a>
                     </div>
-                    <p class="register-form__title_2">Already have an account? <a asp-controller="Account" asp-action="Login">Sign in</a></p>
+                    <p class="register-form__title_2">@Localizer["Already have an account?"] <a asp-controller="Account" asp-action="Login">@Localizer["Sign in"]</a></p>
                 </div>
             </div>
-        </div>      
+        </div>
     </div>
 </body>
 </html>

@@ -1,33 +1,38 @@
-﻿<footer class="footer">
+﻿@using HotBooking
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<CommonResources> SharedLocalizer
+
+<footer class="footer">
     <div class="container">
         <div class="footer__column">
             <div class="footer__menu menu">
                 <div class="menu__row">
                     <div class="menu__about">
                         <div class="menu__column">
-                            <p class="title_2">About</p>
-                            <a href="">About HotBooking.com</a>
-                            <a href="">Service guarantee</a>
-                            <a href="">News</a>
-                            <a href="">Careers</a>
-                            <a href="">Terms & conditions</a>
-                            <a href="">Privacy statement</a>
-                            <a href="">Do not sell my personal information</a>
+                            <p class="title_2">@SharedLocalizer["About"]</p>
+                            <a href="">@SharedLocalizer["About HotBooking.com"]</a>
+                            <a href="">@SharedLocalizer["Service guarantee"]</a>
+                            <a href="">@SharedLocalizer["News"]</a>
+                            <a href="">@SharedLocalizer["Careers"]</a>
+                            <a href="">@SharedLocalizer["Terms & conditions"]</a>
+                            <a href="">@SharedLocalizer["Privacy statement"]</a>
+                            <a href="">@SharedLocalizer["Do not sell my personal information"]</a>
                         </div>
                     </div>
                     <div class="menu__your-opinion">
                         <div class="menu__column">
-                            <p class="title_2">Your opinion</p>
-                            <a href="">Hotel reviews</a>
-                            <a href="">Send review about HotBooking.com</a>
-                            <a href="">What people are saying</a>
+                            <p class="title_2">@SharedLocalizer["Your opinion"]</p>
+                            <a href="">@SharedLocalizer["Hotel reviews"]</a>
+                            <a href="">@SharedLocalizer["Send review about HotBooking.com"]</a>
+                            <a href="">@SharedLocalizer["What people are saying"]</a>
                         </div>
                     </div>
                     <div class="menu__contact-us">
                         <div class="menu__column">
-                            <p class="title_2">Contact us</p>
-                            <a asp-controller="Home" asp-action="ContactUs">Website feedback</a>
-                            <a href="">Customer support</a>
+                            <p class="title_2">@SharedLocalizer["Contact us"]</p>
+                            <a asp-controller="Home" asp-action="ContactUs">@SharedLocalizer["Website feedback"]</a>
+                            <a href="">@SharedLocalizer["Customer support"]</a>
                         </div>
                     </div>
                 </div>
@@ -51,8 +56,8 @@
                     </div>
                 </div>
                 <div class="sub-footer__copyright">
-                    <p>Copyright © 2020 HotBooking.com All rights reserved.</p>
-                </div>
+                    <p>@SharedLocalizer["Copyright 2020 HotBooking.com All rights reserved."]</p>
+                 </div>
             </div>
         </div>
     </div>

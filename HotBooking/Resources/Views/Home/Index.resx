@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="24/7 Dedicated Customer Care Team" xml:space="preserve">
+    <value>24/7 Dedicated Customer Care Team</value>
+  </data>
+  <data name="24/7 Dedicated Customer Care Team desc" xml:space="preserve">
+    <value>Our customer care team is available 24/7. Our managers can help you with choosing a hotel and making a reservation, or if you need any help when traveling, they will find a solution to your problem as soon as possible.</value>
+  </data>
+  <data name="Explore Armenia" xml:space="preserve">
+    <value>Explore Armenia</value>
+  </data>
+  <data name="Favorite cities" xml:space="preserve">
+    <value>Favorite cities</value>
+  </data>
+  <data name="Flexible payment options" xml:space="preserve">
+    <value>Flexible payment options</value>
+  </data>
+  <data name="Flexible payment options desc" xml:space="preserve">
+    <value>You can choose a payment method. We accept all major credit cards for online payment. You can also pay upon arrival at the hotel.</value>
+  </data>
+  <data name="Free App" xml:space="preserve">
+    <value>Free App</value>
+  </data>
+  <data name="Free App desc" xml:space="preserve">
+    <value>The most important thing about our app is that it shows secret offers. Plus, it is extremely handy—book hotels on the subway, at work, or even at the airport.</value>
+  </data>
+  <data name="HotBooking desc" xml:space="preserve">
+    <value>HotBooking – Armenian online service for booking accommodations worldwide. You will enjoy our website if you value your time, money and ability of choice. Our search takes few minutes but result will impress each traveler. You can easily find the best room for you through our data and book hotel immediately. Among accommodations offered: hotels, apartments, hostels, guest houses, bungalows in any part of the world. HotBooking doesn’t charge you hidden commissions and fees – book hotel for the best prices with us!</value>
+  </data>
+  <data name="HotBooking title" xml:space="preserve">
+    <value>Online hotel reservation system HotBooking</value>
+  </data>
+  <data name="Hotels Worldwide" xml:space="preserve">
+    <value>Hotels Worldwide</value>
+  </data>
+  <data name="Hotels Worldwide desc" xml:space="preserve">
+    <value>We have over 1,300,000 properties around the world. This includes hotels, hostels, apartments, villas, and even campgrounds. Find suitable accommodation at any time of the year.</value>
+  </data>
+  <data name="Latest reviews" xml:space="preserve">
+    <value>Latest reviews</value>
+  </data>
+  <data name="Learn more" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="Low prices" xml:space="preserve">
+    <value>Low prices</value>
+  </data>
+  <data name="Low prices desc" xml:space="preserve">
+    <value>Our prices are under close control as we work with thousands of hotels and dozens of providers directly. This also means that we always have great offers for most destinations.</value>
+  </data>
+  <data name="Online hotel reservation system HotBooking" xml:space="preserve">
+    <value>Online hotel reservation system HotBooking</value>
+  </data>
+  <data name="Reliable Reviews" xml:space="preserve">
+    <value>Reliable Reviews</value>
+  </data>
+  <data name="Reliable Reviews desc" xml:space="preserve">
+    <value>We collect and publish our clients' reviews, as well as reviews from TripAdvisor, to provide you with additional information about the hotel.</value>
+  </data>
+</root>

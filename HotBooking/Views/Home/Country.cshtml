@@ -1,6 +1,10 @@
-﻿@using HotBooking.Domain.Entities
+﻿@using HotBooking
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<CommonResources> SharedLocalizer
+@using HotBooking.Domain.Entities
 @model Country
-@{ 
+@{
     Layout = "_LayoutCountry";
 }
 
@@ -11,7 +15,7 @@
                 <div class="content__column">
                     <article class="article">
                         <div class="article__title title">
-                            <h4>Top destinations for @Model.Title city trips</h4>
+                            <h4>@Localizer["Top destinations for"] @Model.Title @Localizer["city trips"]</h4>
                         </div>
                         <div id="js-carousel-city-4" class="article__row owl-carousel">
                             @foreach (var city in Model.Cities)
@@ -24,8 +28,8 @@
                                             <span class="overlayed"></span>
                                             <div class="gradient__info">
                                                 <p class="gradient__name">@city.Title</p>
-                                                <p class="gradient__count">@city.Hotels.Count hotels</p>
-                                            </div>
+                                                <p class="gradient__count">@city.Hotels.Count @Localizer["hotels"]</p>
+  </div>
                                         </div>
                                     </button>
                                 </form>
@@ -42,8 +46,8 @@
                                             <span class="overlayed"></span>
                                             <div class="gradient__info">
                                                 <p class="gradient__name">@city.Title</p>
-                                                <p class="gradient__count">@city.Hotels.Count hotels</p>
-                                            </div>
+                                                <p class="gradient__count">@city.Hotels.Count @Localizer["hotels"]</p>
+  </div>
                                         </div>
                                     </button>
                                 </form>
@@ -60,8 +64,8 @@
                                             <span class="overlayed"></span>
                                             <div class="gradient__info">
                                                 <p class="gradient__name">@city.Title</p>
-                                                <p class="gradient__count">@city.Hotels.Count hotels</p>
-                                            </div>
+                                                <p class="gradient__count">@city.Hotels.Count @Localizer["hotels"]</p>
+  </div>
                                         </div>
                                     </button>
                                 </form>
@@ -78,8 +82,8 @@
                                             <span class="overlayed"></span>
                                             <div class="gradient__info">
                                                 <p class="gradient__name">@city.Title</p>
-                                                <p class="gradient__count">@city.Hotels.Count hotels</p>
-                                            </div>
+                                                <p class="gradient__count">@city.Hotels.Count @Localizer["hotels"]</p>
+  </div>
                                         </div>
                                     </button>
                                 </form>
@@ -89,7 +93,7 @@
                     <article class="article">
                         <div class="simple-info">
                             <div class="simple-info__title">
-                                Explore and find Hotels in @Model.Title
+                                @Localizer["Explore and find Hotels in"] @Model.Title
                             </div>
                             <div class="simple-info__desc">
                                 @Model.Text
@@ -98,7 +102,7 @@
                     </article>
                     <article class="article">
                         <div class="article__title title">
-                            <h4>Top hotel in @Model.Title</h4>
+                            <h4>@Localizer["Top hotels in"] @Model.Title</h4>
                         </div>
                         <div id="js-carousel-hotel-3" class="article__row owl-carousel">
                             @foreach (var city in Model.Cities)
@@ -110,7 +114,7 @@
                                         <div class="hotel-card__head>">
                                             <img src="~/@hotel.TitleImagePath" alt="">
                                             <div class="hotel-card__title">
-                                                @hotel.Title hotel
+                                                @hotel.Title @Localizer["hotel"]
                                             </div>
                                             <div class="hotel-card__subtitle">
                                                 Hotel in @hotel.City.Title
@@ -124,29 +128,29 @@
                                                         string str;
                                                         if (@hotel.ReviewRating >= 9)
                                                         {
-                                                            str = "Superb";
+                                                            str = @Localizer["Superb"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 8)
                                                         {
-                                                            str = "Very Good";
+                                                            str = @Localizer["Very Good"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 7)
                                                         {
-                                                            str = "VGood";
+                                                            str = @Localizer["Good"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 6)
                                                         {
-                                                            str = "Pleasant";
+                                                            str = @Localizer["Pleasant"].Value;
                                                         }
                                                         else
                                                         {
-                                                            str = "Bad";
+                                                            str = @Localizer["Bad"].Value;
                                                         }
                                                     }
                                                     @str
                                                 </div>
                                                 <div class="hotel-card__reviews">
-                                                    @hotel.Reviews.Count reviews
+                                                    @hotel.Reviews.Count @Localizer["reviews"]
                                                 </div>
                                             </div>
                                             <div class="hotel-card__info">
@@ -156,8 +160,8 @@
 
                                         <form asp-controller="Hotel" asp-action="Hotel" method="post">
                                             <input type="text" name="hotelId" value="@hotel.Id" hidden />
-                                            <button>Reserve</button>
-                                        </form>
+                                            <button>@Localizer["Reserve"]</button>
+                                    </form>
                                     </div>
                                     if (count == 20)
                                     {
@@ -177,10 +181,10 @@
                                         <div class="hotel-card__head>">
                                             <img src="~/@hotel.TitleImagePath" alt="">
                                             <div class="hotel-card__title">
-                                                @hotel.Title hotel
+                                                @hotel.Title @Localizer["hotel"]
                                             </div>
                                             <div class="hotel-card__subtitle">
-                                                Hotel in @hotel.City.Title
+                                                @Localizer["Hotel in"] @hotel.City.Title
                                             </div>
                                             <div class="hotel-card__review-block">
                                                 <div class="hotel-card__rating">
@@ -191,29 +195,29 @@
                                                         string str;
                                                         if (@hotel.ReviewRating >= 9)
                                                         {
-                                                            str = "Superb";
+                                                            str = @Localizer["Superb"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 8)
                                                         {
-                                                            str = "Very Good";
+                                                            str = @Localizer["Very Good"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 7)
                                                         {
-                                                            str = "VGood";
+                                                            str = @Localizer["Good"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 6)
                                                         {
-                                                            str = "Pleasant";
+                                                            str = @Localizer["Pleasant"].Value;
                                                         }
                                                         else
                                                         {
-                                                            str = "Bad";
+                                                            str = @Localizer["Bad"].Value;
                                                         }
                                                     }
                                                     @str
                                                 </div>
                                                 <div class="hotel-card__reviews">
-                                                    @hotel.Reviews.Count reviews
+                                                    @hotel.Reviews.Count @Localizer["reviews"]
                                                 </div>
                                             </div>
                                             <div class="hotel-card__info">
@@ -223,8 +227,8 @@
 
                                         <form asp-controller="Hotel" asp-action="Hotel" method="post">
                                             <input type="text" name="hotelId" value="@hotel.Id" hidden />
-                                            <button>Reserve</button>
-                                        </form>
+                                            <button>@Localizer["Reserve"]</button>
+                                    </form>
                                     </div>
                                     if (count == 20)
                                     {
@@ -243,7 +247,7 @@
                                         <div class="hotel-card__head>">
                                             <img src="~/@hotel.TitleImagePath" alt="">
                                             <div class="hotel-card__title">
-                                                @hotel.Title hotel
+                                                @hotel.Title @Localizer["hotel"]
                                             </div>
                                             <div class="hotel-card__subtitle">
                                                 Hotel in @hotel.City.Title
@@ -257,29 +261,29 @@
                                                         string str;
                                                         if (@hotel.ReviewRating >= 9)
                                                         {
-                                                            str = "Superb";
+                                                            str = @Localizer["Superb"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 8)
                                                         {
-                                                            str = "Very Good";
+                                                            str = @Localizer["Very Good"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 7)
                                                         {
-                                                            str = "VGood";
+                                                            str = @Localizer["Good"].Value;
                                                         }
                                                         else if (@hotel.ReviewRating >= 6)
                                                         {
-                                                            str = "Pleasant";
+                                                            str = @Localizer["Pleasant"].Value;
                                                         }
                                                         else
                                                         {
-                                                            str = "Bad";
+                                                            str = @Localizer["Bad"].Value;
                                                         }
                                                     }
                                                     @str
                                                 </div>
                                                 <div class="hotel-card__reviews">
-                                                    @hotel.Reviews.Count reviews
+                                                    @hotel.Reviews.Count @Localizer["reviews"]
                                                 </div>
                                             </div>
                                             <div class="hotel-card__info">
@@ -289,7 +293,7 @@
 
                                         <form asp-controller="Hotel" asp-action="Hotel" method="post">
                                             <input type="text" name="hotelId" value="@hotel.Id" hidden />
-                                            <button>Reserve</button>
+                                            <button>@Localizer["Reserve"]</button>
                                         </form>
                                     </div>
                                     if (count == 20)

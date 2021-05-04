@@ -8,6 +8,7 @@ main article:last-child{
 
 article .title{
     text-align: start;
+    font-weight: 700;
 }
 
 .article__left {

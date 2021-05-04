@@ -1,4 +1,9 @@
-﻿<header class="header">
+﻿@using HotBooking
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<CommonResources> SharedLocalizer
+
+<header class="header">
     <div class="container">
         <div class="header__row">
             <div class="logo">
@@ -10,19 +15,19 @@
             <nav class="header__menu">
                 <ul class="header__list">
                     <li>
-                        <a href="" class="header__link">Currency</a>
+                        <a href="" class="header__link">@SharedLocalizer["Currency"]</a>
                     </li>
                     <li>
-                        <a href="" class="header__link">Language</a>
+                        <a href="" class="header__link">@SharedLocalizer["Language"]</a>
                     </li>
                     <li>
-                        <a href="" class="header__link">Register object</a>
+                        <a href="" class="header__link">@SharedLocalizer["Register object"]</a>
                     </li>
                     <li>
-                        <a href="" class="header__link">Register</a>
+                        <a href="" class="header__link">@SharedLocalizer["Register"]</a>
                     </li>
                     <li>
-                        <a href="" class="header__link">Login</a>
+                        <a href="" class="header__link">@SharedLocalizer["Login"]</a>
                     </li>
                 </ul>
             </nav>
@@ -37,13 +42,13 @@
                         </a>
                     </div>
                     <div class="nav__item nav__register-object">
-                        <a href="" class="nav__link nav__link_white">Register object</a>
+                        <a href="" class="nav__link nav__link_white">@SharedLocalizer["Register object"]</a>
                     </div>
                     <div class="nav__item nav__register nav__link_teal">
-                        <a asp-controller="Account" asp-action="Register" class="nav__link nav__link_teal">Register</a>
+                        <a asp-controller="Account" asp-action="Register" class="nav__link nav__link_teal">@SharedLocalizer["Register"]</a>
                     </div>
                     <div class="nav__item nav__login nav__link_teal">
-                        <a asp-controller="Account" asp-action="Login" class="nav__link nav__link_teal">Login</a>
+                        <a asp-controller="Account" asp-action="Login" class="nav__link nav__link_teal">@SharedLocalizer["Login"]</a>
                     </div>
                 </div>
             </nav>
