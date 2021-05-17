@@ -10,12 +10,12 @@ namespace HotBooking.Domain.Entities
     {
         [Required(ErrorMessage = "Type note name")]
         [Display(Name = "Note name")]
-        public override string Title { get; set; }
+        public override string TitleEn { get; set; }
 
         [Display(Name = "Notes short description")]
-        public override string Subtitle { get; set; }
+        public override string SubtitleEn { get; set; }
 
         [Display(Name = "Notes long description")]
-        public override string Text { get; set; }
+        public override string TextEn { get; set; }
     }
 }

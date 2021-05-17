@@ -231,16 +231,17 @@
                             </div>
                             @foreach (var hotel in Model.Where(x => x.Value))
                             {
+                                var hotelModel = hotel.Key.GetModel(ViewBag.Culture);
                                 <div class="search__card">
                                     <div class="card__row">
                                         <div class="card__left">
                                             <div class="card__image">
-                                                <img src="~/@hotel.Key.TitleImagePath" alt="">
+                                                <img src="~/@hotelModel.TitleImagePath" alt="">
                                             </div>
                                             <div class="card__desc">
                                                 <div class="card__head">
                                                     <div class="card__title">
-                                                        @hotel.Key.Title
+                                                        @hotelModel.Title
                                                     </div>
                                                     <div>
                                                         @for (var i = 0; i < hotel.Key.Stars; i++)
@@ -250,8 +251,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="card__subtitle">
-                                                    <p>@hotel.Key.Adress, @hotel.Key.City.Title  @hotel.Key.DistanceToCenter km from centre</p>
-                                                    <p>@hotel.Key.Subtitle</p>
+                                                    <p>@hotelModel.Adress, @hotel.Key.City.GetModel(ViewBag.Culture).Title  @hotel.Key.DistanceToCenter @Localizer["km from centre"]</p>
+                                                    <p>@hotelModel.Subtitle</p>
                                                     <p>
                                                         @foreach (var item in ViewBag.Facilities)
                                                         {
@@ -303,7 +304,7 @@
                                                 }
                                                 @price
                                             </div>
-                                            <form asp-controller="Hotel" asp-action="Hotel" method="post" style="z-index: 100;">
+                                            <form asp-controller="Hotel" asp-action="Hotel" method="get" style="z-index: 100;">
                                                 <input type="text" name="hotelId" value="@hotel.Key.Id" hidden />
                                                 <input type="text" name="arrival" value="@ViewBag.Arrival" hidden />
                                                 <input type="text" name="departure" value="@ViewBag.Departure" hidden />

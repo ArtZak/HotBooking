@@ -28,7 +28,7 @@ namespace HotBooking.Areas.Admin.Controllers
         public IActionResult Edit(Guid id)
         {          
             var entity = id == default ? new City() : dataManager.Cities.GetById(id);
-            ViewBag.Countries = dataManager.Countries.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = entity.CountryId == r.Id}).ToList();
+            ViewBag.Countries = dataManager.Countries.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.TitleEn, Selected = entity.CountryId == r.Id}).ToList();
             return View(entity);
         }
 

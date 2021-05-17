@@ -1,8 +1,10 @@
 ﻿using HotBooking.Domain.Entities;
 using HotBooking.Domain.Repositories.Abstract;
+using HotBooking.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,9 +23,65 @@ namespace HotBooking.Domain.Repositories.EntityFramwork
             return context.HotelHotelFacilities;
         }
 
+        public IQueryable<HotelHotelFacilityModel> GetAllByCulture(CultureInfo culture)
+        {
+            if (culture.Name == "en-US")
+            {
+                return context.HotelHotelFacilities.Select(c =>
+                        new HotelHotelFacilityModel
+                        {
+                            Hotel = c.Hotel,
+                            HotelFacility = c.HotelFacility,
+                            HotelFacilityId = c.HotelFacilityId,
+                            HotelId = c.HotelId
+                        });
+            }
+            else
+            {
+                return context.HotelHotelFacilities.Select(c =>
+                        new HotelHotelFacilityModel
+                        {
+                            HotelId = c.HotelId,
+                            HotelFacilityId = c.HotelFacilityId,
+                            HotelFacility = c.HotelFacility,
+                            Hotel = c.Hotel
+                        });
+            }
+        }
+
         public HotelHotelFacility GetById(Guid hotelId, Guid facilityId)
         {
             return context.HotelHotelFacilities.Find(hotelId, facilityId);
+        }
+
+        public HotelHotelFacilityModel GetByIdAndCulture(Guid hotelId, Guid facilityId, CultureInfo culture)
+        {
+            var entity = context.HotelHotelFacilities.Find(hotelId, facilityId);
+            if (entity is null)
+            {
+                return null;
+            }
+
+            if (culture.Name == "en-US")
+            {
+                return new HotelHotelFacilityModel
+                {
+                    Hotel = entity.Hotel,
+                    HotelFacility = entity.HotelFacility,
+                    HotelFacilityId = entity.HotelFacilityId,
+                    HotelId = entity.HotelId
+                };
+            }
+            else
+            {
+                return new HotelHotelFacilityModel
+                {
+                    Hotel = entity.Hotel,
+                    HotelFacility = entity.HotelFacility,
+                    HotelFacilityId = entity.HotelFacilityId,
+                    HotelId = entity.HotelId
+                };
+            }
         }
 
         public void Save(HotelHotelFacility entity)

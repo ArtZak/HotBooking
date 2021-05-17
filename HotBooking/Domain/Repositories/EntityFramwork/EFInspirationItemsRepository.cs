@@ -51,9 +51,9 @@ namespace HotBooking.Domain.Repositories.EntityFramwork
         {
             var list = new List<String>();
 
-            list.Add(entity.Title.ToString());
-            list.Add(entity.Subtitle.ToString());
-            list.Add(entity.Text.ToString());
+            list.Add(entity.TitleEn.ToString());
+            list.Add(entity.SubtitleEn.ToString());
+            list.Add(entity.TextEn.ToString());
             list.Add(entity.TitleImagePath?.ToString());
             list.Add(entity.DateAdded.ToString());
 

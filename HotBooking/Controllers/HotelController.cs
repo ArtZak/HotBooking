@@ -1,5 +1,6 @@
 ﻿using HotBooking.Domain;
 using HotBooking.Domain.Entities;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,14 @@ namespace HotBooking.Controllers
             this.dataManager = dataManager;
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Hotel(Guid hotelId, DateTime arrival, DateTime departure, int roomsCount, int guests)
         {
+            var rqf = Request.HttpContext.Features.Get<IRequestCultureFeature>();
+            var culture = rqf.RequestCulture.Culture;
+
+            ViewBag.Culture = culture;
+
             var currHotel = dataManager.Hotels.GetById(hotelId);
             
             ViewBag.Arrival = arrival;
@@ -83,7 +89,7 @@ namespace HotBooking.Controllers
 
             dataManager.BookedDates.Save(models);
 
-            return RedirectToAction("Index", "Home");
+            return View();
         }
     }
 }

@@ -6,24 +6,24 @@
 @inject IHtmlLocalizer<CommonResources> SharedLocalizer
 @model DataManager
 @{
-    var favoriteCities = new List<City>();
-    var armenianCities = new List<City>();
-    var favoriteCountries = new List<Country>();
+    var favoriteCities = new List<CityModel>();
+    var armenianCities = new List<CityModel>();
+    var favoriteCountries = new List<CountryModel>();
 
-    foreach (var item in Model.Cities.GetAll())
+    foreach (var item in Model.Cities.GetAllByCulture(ViewBag.Culture))
     {
         var country = Model.Countries.GetById(item.CountryId);
         if (item.IsFavorite)
         {
             favoriteCities.Add(item);
         }
-        if (country.Title == "Armenia")
+        if (country.TitleEn == "Armenia")
         {
             armenianCities.Add(item);
         }
     }
 
-    foreach (var item in Model.Countries.GetAll())
+    foreach (var item in Model.Countries.GetAllByCulture(ViewBag.Culture))
     {
         if (item.IsFavorite)
         {
@@ -35,7 +35,6 @@
     <div class="content">
         <div class="container">
             <div class="content__column">
-                @await Html.PartialAsync("SelectLanguagePartial")
                 <article class="article">
                     <div class="article__title title">
                         <h3>@Localizer["HotBooking title"]</h3>

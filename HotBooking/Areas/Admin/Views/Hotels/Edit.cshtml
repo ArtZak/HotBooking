@@ -21,20 +21,35 @@
                 <input asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id"></span>
             </div>
+            <div class="mb-3" hidden>
+                <label asp-for="ReviewRating" class="form-label"></label>
+                <input asp-for="ReviewRating" class="form-control" />
+                <span asp-validation-for="ReviewRating"></span>
+            </div>
             <div class="mb-3">
                 <label asp-for="Id" class="form-label"></label>
                 <input asp-for="Id" disabled class="form-control" />
                 <span asp-validation-for="Id"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Title" class="form-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title"></span>
+                <label asp-for="TitleEn" class="form-label"></label>
+                <input asp-for="TitleEn" class="form-control" />
+                <span asp-validation-for="TitleEn"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Subtitle" class="form-label"></label>
-                <input asp-for="Subtitle" class="form-control" />
-                <span asp-validation-for="Subtitle"></span>
+                <label asp-for="SubtitleEn" class="form-label"></label>
+                <input asp-for="SubtitleEn" class="form-control" />
+                <span asp-validation-for="SubtitleEn"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="TitleArm" class="form-label"></label>
+                <input asp-for="TitleArm" class="form-control" />
+                <span asp-validation-for="TitleArm"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SubtitleArm" class="form-label"></label>
+                <input asp-for="SubtitleArm" class="form-control" />
+                <span asp-validation-for="SubtitleArm"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Adress" class="form-label"></label>
@@ -42,9 +57,14 @@
                 <span asp-validation-for="Adress"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Text" class="form-label"></label>
-                <textarea asp-for="Text" class="form-control"></textarea>
-                <span asp-validation-for="Text"></span>
+                <label asp-for="TextEn" class="form-label"></label>
+                <textarea asp-for="TextEn" class="form-control"></textarea>
+                <span asp-validation-for="TextEn"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="TextArm" class="form-label"></label>
+                <textarea asp-for="TextArm" class="form-control"></textarea>
+                <span asp-validation-for="TextArm"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Stars" class="form-label"></label>

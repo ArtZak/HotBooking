@@ -9,7 +9,8 @@
     var cultureItems = LocOptions.Value.SupportedUICultures
         .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
         .ToList();
-    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}"; }
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}{Context.Request.QueryString.Value}";
+}
 
 <div title="@Localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
     <form id="selectLanguage" 
@@ -19,11 +20,11 @@
           method="post" 
           class="form-horizontal" 
           role="form">
-        <label asp-for="@requestCulture.RequestCulture.UICulture.Name">@Localizer["Language:"]</label> 
         <select name="culture"
                 onchange="this.form.submit();"
-                asp-for="@requestCulture.RequestCulture.UICulture.Name" 
-                asp-items="cultureItems">
+                asp-for="@requestCulture.RequestCulture.UICulture.Name">
+            <option value="hy-AM">Armenian</option>
+            <option value="en-US">English</option>
         </select>
     </form>
 </div>  

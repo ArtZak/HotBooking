@@ -14,13 +14,16 @@ namespace HotBooking.Domain.Entities
         public Guid Id { get; set; }
 
         [Display(Name ="Name(title)")]
-        public virtual string Title { get; set; }
+        public virtual string TitleEn { get; set; }
+        public virtual string TitleArm { get; set; }
         
         [Display(Name ="Short description")]
-        public virtual string Subtitle { get; set; }
+        public virtual string SubtitleEn { get; set; }
+        public virtual string SubtitleArm { get; set; }
         
         [Display(Name ="Full description")]
-        public virtual string Text { get; set; }
+        public virtual string TextEn { get; set; }
+        public virtual string TextArm { get; set; }
         
         [Display(Name ="Title image")]
         public virtual string TitleImagePath { get; set; }

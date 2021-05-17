@@ -123,6 +123,9 @@
   <data name="Good" xml:space="preserve">
     <value>Good</value>
   </data>
+  <data name="km from centre" xml:space="preserve">
+    <value>km from centre</value>
+  </data>
   <data name="Pleasant" xml:space="preserve">
     <value>Pleasant</value>
   </data>

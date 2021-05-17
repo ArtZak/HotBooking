@@ -79,6 +79,15 @@ namespace HotBooking.Resources.Views.Search {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to km from centre.
+        /// </summary>
+        public static string km_from_centre {
+            get {
+                return ResourceManager.GetString("km from centre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pleasant.
         /// </summary>
         public static string Pleasant {

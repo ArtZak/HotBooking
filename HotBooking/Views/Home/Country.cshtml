@@ -3,7 +3,7 @@
 @inject IViewLocalizer Localizer
 @inject IHtmlLocalizer<CommonResources> SharedLocalizer
 @using HotBooking.Domain.Entities
-@model Country
+@model CountryModel
 @{
     Layout = "_LayoutCountry";
 }
@@ -21,15 +21,15 @@
                             @foreach (var city in Model.Cities)
                             {
                                 <form asp-controller="Search" asp-action="Search" method="post" class="city__form">
-                                    <input type="text" name="destination" value="@city.Title" hidden />
+                                    <input type="text" name="destination" value="@city.TitleEn" hidden />
                                     <button>
                                         <div class="article__gradient gradient">
                                             <img src="~/@city.TitleImagePath" alt="">
                                             <span class="overlayed"></span>
                                             <div class="gradient__info">
-                                                <p class="gradient__name">@city.Title</p>
+                                                <p class="gradient__name">@city.GetModel(ViewBag.Culture).Title</p>
                                                 <p class="gradient__count">@city.Hotels.Count @Localizer["hotels"]</p>
-  </div>
+                                            </div>
                                         </div>
                                     </button>
                                 </form>
@@ -39,15 +39,15 @@
                             @foreach (var city in Model.Cities)
                             {
                                 <form asp-controller="Search" asp-action="Search" method="post" class="city__form">
-                                    <input type="text" name="destination" value="@city.Title" hidden />
+                                    <input type="text" name="destination" value="@city.TitleEn" hidden />
                                     <button>
                                         <div class="article__gradient gradient">
                                             <img src="~/@city.TitleImagePath" alt="">
                                             <span class="overlayed"></span>
                                             <div class="gradient__info">
-                                                <p class="gradient__name">@city.Title</p>
+                                                <p class="gradient__name">@city.GetModel(ViewBag.Culture).Title</p>
                                                 <p class="gradient__count">@city.Hotels.Count @Localizer["hotels"]</p>
-  </div>
+                                            </div>
                                         </div>
                                     </button>
                                 </form>
@@ -57,15 +57,15 @@
                             @foreach (var city in Model.Cities)
                             {
                                 <form asp-controller="Search" asp-action="Search" method="post" class="city__form">
-                                    <input type="text" name="destination" value="@city.Title" hidden />
+                                    <input type="text" name="destination" value="@city.TitleEn" hidden />
                                     <button>
                                         <div class="article__gradient gradient">
                                             <img src="~/@city.TitleImagePath" alt="">
                                             <span class="overlayed"></span>
                                             <div class="gradient__info">
-                                                <p class="gradient__name">@city.Title</p>
+                                                <p class="gradient__name">@city.GetModel(ViewBag.Culture).Title</p>
                                                 <p class="gradient__count">@city.Hotels.Count @Localizer["hotels"]</p>
-  </div>
+                                            </div>
                                         </div>
                                     </button>
                                 </form>
@@ -75,13 +75,13 @@
                             @foreach (var city in Model.Cities)
                             {
                                 <form asp-controller="Search" asp-action="Search" method="post" class="city__form">
-                                    <input type="text" name="destination" value="@city.Title" hidden />
+                                    <input type="text" name="destination" value="@city.TitleEn" hidden />
                                     <button>
                                         <div class="article__gradient gradient">
                                             <img src="~/@city.TitleImagePath" alt="">
                                             <span class="overlayed"></span>
                                             <div class="gradient__info">
-                                                <p class="gradient__name">@city.Title</p>
+                                                <p class="gradient__name">@city.GetModel(ViewBag.Culture).Title</p>
                                                 <p class="gradient__count">@city.Hotels.Count @Localizer["hotels"]</p>
   </div>
                                         </div>
@@ -114,10 +114,10 @@
                                         <div class="hotel-card__head>">
                                             <img src="~/@hotel.TitleImagePath" alt="">
                                             <div class="hotel-card__title">
-                                                @hotel.Title @Localizer["hotel"]
+                                                @hotel.TitleEn @Localizer["hotel"]
                                             </div>
                                             <div class="hotel-card__subtitle">
-                                                Hotel in @hotel.City.Title
+                                                Hotel in @hotel.City.TitleEn
                                             </div>
                                             <div class="hotel-card__review-block">
                                                 <div class="hotel-card__rating">
@@ -154,7 +154,7 @@
                                                 </div>
                                             </div>
                                             <div class="hotel-card__info">
-                                                @hotel.Subtitle
+                                                @hotel.SubtitleEn
                                             </div>
                                         </div>
 
@@ -181,10 +181,10 @@
                                         <div class="hotel-card__head>">
                                             <img src="~/@hotel.TitleImagePath" alt="">
                                             <div class="hotel-card__title">
-                                                @hotel.Title @Localizer["hotel"]
+                                                @hotel.TitleEn @Localizer["hotel"]
                                             </div>
                                             <div class="hotel-card__subtitle">
-                                                @Localizer["Hotel in"] @hotel.City.Title
+                                                @Localizer["Hotel in"] @hotel.City.TitleEn
                                             </div>
                                             <div class="hotel-card__review-block">
                                                 <div class="hotel-card__rating">
@@ -221,7 +221,7 @@
                                                 </div>
                                             </div>
                                             <div class="hotel-card__info">
-                                                @hotel.Subtitle
+                                                @hotel.SubtitleEn
                                             </div>
                                         </div>
 
@@ -247,10 +247,10 @@
                                         <div class="hotel-card__head>">
                                             <img src="~/@hotel.TitleImagePath" alt="">
                                             <div class="hotel-card__title">
-                                                @hotel.Title @Localizer["hotel"]
+                                                @hotel.TitleEn @Localizer["hotel"]
                                             </div>
                                             <div class="hotel-card__subtitle">
-                                                Hotel in @hotel.City.Title
+                                                Hotel in @hotel.City.TitleEn
                                             </div>
                                             <div class="hotel-card__review-block">
                                                 <div class="hotel-card__rating">
@@ -287,7 +287,7 @@
                                                 </div>
                                             </div>
                                             <div class="hotel-card__info">
-                                                @hotel.Subtitle
+                                                @hotel.SubtitleEn
                                             </div>
                                         </div>
 

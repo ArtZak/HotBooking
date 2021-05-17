@@ -12,9 +12,9 @@ namespace HotBooking.Domain.Entities
         public string CodeWord { get; set; }
 
         [Display(Name = "Название страницы (заголовок)")]
-        public override string Title { get; set; } = "Информационная страница";
+        public override string TitleEn { get; set; } = "Информационная страница";
 
         [Display(Name = "Cодержание страницы")]
-        public override string Text { get; set; } = "Содержание заполняется администратором";
+        public override string TextEn { get; set; } = "Содержание заполняется администратором";
     }
 }

@@ -123,6 +123,9 @@
   <data name="Good" xml:space="preserve">
     <value>Լավ</value>
   </data>
+  <data name="km from centre" xml:space="preserve">
+    <value>կմ կենտրոնից</value>
+  </data>
   <data name="Pleasant" xml:space="preserve">
     <value>Հաճելի</value>
   </data>

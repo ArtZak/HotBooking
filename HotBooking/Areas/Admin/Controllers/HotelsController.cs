@@ -27,8 +27,8 @@ namespace HotBooking.Areas.Admin.Controllers
         public IActionResult Edit(Guid id)
         {   
             var entity = id == default ? new Hotel() : dataManager.Hotels.GetById(id);
-            ViewBag.Facilities = dataManager.HotelFacilities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = dataManager.HotelHotelFacilities.GetById(id, r.Id) != null}).ToList();
-            ViewBag.Cities = dataManager.Cities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Title, Selected = entity.CityId == r.Id }).ToList();         
+            ViewBag.Facilities = dataManager.HotelFacilities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.TitleEn, Selected = dataManager.HotelHotelFacilities.GetById(id, r.Id) != null}).ToList();
+            ViewBag.Cities = dataManager.Cities.GetAll().Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.TitleEn, Selected = entity.CityId == r.Id }).ToList();         
             return View(entity);
         }
 

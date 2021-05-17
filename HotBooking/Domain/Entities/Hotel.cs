@@ -1,6 +1,8 @@
-﻿using System;
+﻿using HotBooking.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,5 +35,61 @@ namespace HotBooking.Domain.Entities
         [Required]
         public Guid CityId { get; set; }
         public virtual City City { get; set; }
+
+        public HotelModel GetModel(CultureInfo culture)
+        {
+            if(culture.Name == "en-US")
+            {
+                return new HotelModel
+                {
+                    Adress = Adress,
+                    City = City,
+                    CityId = CityId,
+                    DateAdded = DateAdded,
+                    DistanceToCenter = DistanceToCenter,
+                    Food = Food,
+                    HotelHotelFacilities = HotelHotelFacilities,
+                    Id = Id,
+                    IsFavorite = IsFavorite,
+                    MetaDescription = MetaDescription,
+                    MetaKeywords = MetaKeywords,
+                    MetaTitle = MetaTitle,
+                    ReviewRating = ReviewRating,
+                    Reviews = Reviews,
+                    Rooms = Rooms,
+                    Stars = Stars,
+                    Subtitle = SubtitleEn,
+                    Text = TextEn,
+                    Title = TitleEn,
+                    TitleImagePath = TitleImagePath
+                };
+            }
+            else
+            {
+                return new HotelModel
+                {
+                    Adress = Adress,
+                    City = City,
+                    CityId = CityId,
+                    DateAdded = DateAdded,
+                    DistanceToCenter = DistanceToCenter,
+                    Food = Food,
+                    HotelHotelFacilities = HotelHotelFacilities,
+                    Id = Id,
+                    IsFavorite = IsFavorite,
+                    MetaDescription = MetaDescription,
+                    MetaKeywords = MetaKeywords,
+                    MetaTitle = MetaTitle,
+                    ReviewRating = ReviewRating,
+                    Reviews = Reviews,
+                    Rooms = Rooms,
+                    Stars = Stars,
+                    Subtitle = SubtitleArm,
+                    Text = TextArm,
+                    Title = TitleArm,
+                    TitleImagePath = TitleImagePath
+                };
+            }
+        }
     }
 }

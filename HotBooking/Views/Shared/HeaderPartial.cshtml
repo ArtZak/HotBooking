@@ -37,9 +37,7 @@
                         <a href="" class="nav__link nav__link_white">AMD</a>
                     </div>
                     <div class="nav__item nav__language">
-                        <a href="" class="nav__link">
-                            <img class="" src="~/images/icons/usaIcon.png" alt="">
-                        </a>
+                        @await Html.PartialAsync("SelectLanguagePartial")
                     </div>
                     <div class="nav__item nav__register-object">
                         <a href="" class="nav__link nav__link_white">@SharedLocalizer["Register object"]</a>

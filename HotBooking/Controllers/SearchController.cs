@@ -1,5 +1,7 @@
 ﻿using HotBooking.Domain;
 using HotBooking.Domain.Entities;
+using HotBooking.Models;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace HotBooking.Controllers
             this.dataManager = dataManager;
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Search(string destination,
                                     DateTime arrival,
                                     DateTime departure,
@@ -25,13 +27,18 @@ namespace HotBooking.Controllers
                                     int children,
                                     int rooms = 1)
         {
+            var rqf = Request.HttpContext.Features.Get<IRequestCultureFeature>();
+            var culture = rqf.RequestCulture.Culture;
+
+            ViewBag.Culture = culture;
+
             var guests = adults + children;
 
             var countries = dataManager.Countries.GetAll();
-            IQueryable<City> cities;
+            IQueryable<CityModel> cities;
             List<KeyValuePair<Hotel, bool>> hotels = new List<KeyValuePair<Hotel, bool>>();
 
-            IQueryable<Country> selectedCountry = from t in countries where t.Title.ToLower() == destination.ToLower() select t;
+            IQueryable<Country> selectedCountry = from t in countries where t.TitleEn.ToLower().Contains(destination.ToLower()) || t.TitleArm.ToLower().Contains(destination.ToLower()) select t;
             if (selectedCountry.GetEnumerator().MoveNext() == true)
             {
                 var _cities = selectedCountry.FirstOrDefault().Cities;
@@ -60,11 +67,11 @@ namespace HotBooking.Controllers
                         }
                     }
                 }
-                ViewBag.DestinationName = hotels[0].Key.City.Country.Title;
+                ViewBag.DestinationName = hotels[0].Key.City.Country.GetModel(culture).Title;
             }
             else
             {
-                cities = dataManager.Cities.GetAll();
+                cities = dataManager.Cities.GetAllByCulture(culture);
                 var selectedCity = from t in cities where t.Title.ToLower() == destination.ToLower() select t;
 
                 if (selectedCity.GetEnumerator().MoveNext() == false)
@@ -105,8 +112,8 @@ namespace HotBooking.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.Facilities = dataManager.HotelFacilities.GetAll();
-            ViewBag.RoomFacilities = dataManager.RoomFacilities.GetAll();
+            ViewBag.Facilities = dataManager.HotelFacilities.GetAllByCulture(culture);
+            ViewBag.RoomFacilities = dataManager.RoomFacilities.GetAllByCulture(culture);
             ViewBag.Arrival = arrival;
             ViewBag.Departure = departure;
             ViewBag.Guests = guests;
@@ -123,8 +130,11 @@ namespace HotBooking.Controllers
                                     List<Guid> roomFacilities,
                                     string destination)
         {
-            ViewBag.Facilities = dataManager.HotelFacilities.GetAll();
-            ViewBag.RoomFacilities = dataManager.RoomFacilities.GetAll();
+            var rqf = Request.HttpContext.Features.Get<IRequestCultureFeature>();
+            var culture = rqf.RequestCulture.Culture;
+
+            ViewBag.Facilities = dataManager.HotelFacilities.GetAllByCulture(culture);
+            ViewBag.RoomFacilities = dataManager.RoomFacilities.GetAllByCulture(culture);
             ViewBag.DestinationName = destination;
 
             var hotels = new List<KeyValuePair<Hotel, bool>>();
